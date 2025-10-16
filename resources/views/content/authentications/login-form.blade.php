@@ -16,7 +16,7 @@
                         <!-- Logo -->
                         <div class="app-brand justify-content-center">
                             <a href="{{ url('/') }}" class="app-brand-link gap-2">
-                                <span class="app-brand-logo demo"><img src="{{ asset('assets/img/abacus-logo.png') }}"
+                                <span class="app-brand-logo demo"><img src="{{ asset('assets/img/employee-grading.jpg') }}"
                                         alt="Logo" width="100"></span>
                                 <span class="app-brand-text demo text-heading fw-bold"></span>
                             </a>
