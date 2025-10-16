@@ -1,0 +1,14 @@
+{
+    "url": "",
+    "name": "Setup",
+    "icon": "icon-base bx bx-cog icon-lg",
+    "slug": "users",
+    "target": "",
+    "submenu": [
+        {
+            "url": "users.index",
+            "name": "Users",
+            "slug": "users.index"
+        }
+    ]
+}
