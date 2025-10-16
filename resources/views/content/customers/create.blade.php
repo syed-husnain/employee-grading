@@ -7,7 +7,8 @@
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard-analytics') }}">Dashboard</a></li>
-            <li class="breadcrumb-item" aria-current="page"><a href="{{ route('organizations.index') }}">Organizations </a></li>
+            <li class="breadcrumb-item" aria-current="page"><a href="{{ route('organizations.index') }}">Organizations </a>
+            </li>
             <li class="breadcrumb-item active" aria-current="page">Add New Organization</li>
         </ol>
     </nav>
@@ -21,9 +22,10 @@
                 </div>
                 <div class="card-body mt-4">
                     <!-- Radio Buttons -->
-                    
 
-                    <form id="customer-form" action="{{ route('organizations.store') }}" method="POST" enctype="multipart/form-data">
+
+                    <form id="customer-form" action="{{ route('organizations.store') }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="mb-4 d-flex align-items-center">
                             <label class="me-3">Organization Type:</label>
@@ -38,7 +40,8 @@
                             <!-- Left Column -->
                             <div class="col-md-6">
                                 <div class="mb-2 row align-items-center">
-                                    <label for="full_name" class="col-sm-4 col-form-label">Full Name <i class="text-danger">*</i></label>
+                                    <label for="full_name" class="col-sm-4 col-form-label">Full Name <i
+                                            class="text-danger">*</i></label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" name="full_name" id="full_name"
                                             placeholder="e.g. Brandon Freeman" />
@@ -46,7 +49,8 @@
                                 </div>
 
                                 <div class="mb-2 row align-items-center company-field d-none">
-                                    <label for="company_name" class="col-sm-4 col-form-label">Company Name <i class="text-danger">*</i></label>
+                                    <label for="company_name" class="col-sm-4 col-form-label">Company Name <i
+                                            class="text-danger">*</i></label>
                                     <div class="col-sm-8">
                                         <input type="text" name="company_name" class="form-control" id="company_name"
                                             placeholder="e.g. Lumber Inc" />
@@ -64,7 +68,8 @@
                                 <div class="mb-2 row align-items-center">
                                     <label for="contact" class="col-sm-4 col-form-label">Contact</label>
                                     <div class="col-sm-8">
-                                        <input type="text" name="street" class="form-control" id="contact" placeholder="Street..." />
+                                        <input type="text" name="street" class="form-control" id="contact"
+                                            placeholder="Street..." />
                                     </div>
                                 </div>
 
@@ -85,9 +90,9 @@
                                 <div class="mb-2 row align-items-center">
                                     <label class="col-sm-4 col-form-label"></label>
                                     <div class="col-sm-8">
-                                         <select name="state" id="state" class="form-control">
+                                        <select name="state" id="state" class="form-control">
                                             <option value="" selected disabled>State</option>
-                                         </select>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -118,28 +123,32 @@
                                 <div class="mb-2 row align-items-center">
                                     <label class="col-sm-4 col-form-label">Customer Rank</label>
                                     <div class="col-sm-8">
-                                        <input type="number" name="customer_rank" class="form-control" value="0" />
+                                        <input type="number" name="customer_rank" class="form-control"
+                                            value="0" />
                                     </div>
                                 </div>
 
                                 <div class="mb-2 row align-items-center">
                                     <label class="col-sm-4 col-form-label">SAP Customer ID</label>
                                     <div class="col-sm-8">
-                                        <input type="number" name="sap_customer_id" class="form-control" value="0" />
+                                        <input type="number" name="sap_customer_id" class="form-control"
+                                            value="0" />
                                     </div>
                                 </div>
 
                                 <div class="mb-2 row align-items-center">
                                     <label class="col-sm-4 col-form-label">Supplier Rank</label>
                                     <div class="col-sm-8">
-                                        <input type="number" name="supplier_rank" class="form-control" value="0" />
+                                        <input type="number" name="supplier_rank" class="form-control"
+                                            value="0" />
                                     </div>
                                 </div>
 
                                 <div class="mb-2 row align-items-center">
                                     <label class="col-sm-4 col-form-label">Commercial Registration</label>
                                     <div class="col-sm-8">
-                                        <input type="number" name="commercial_registration" class="form-control" value="0" />
+                                        <input type="number" name="commercial_registration" class="form-control"
+                                            value="0" />
                                     </div>
                                 </div>
                             </div>
@@ -169,7 +178,8 @@
                                 </div>
 
                                 <div class="mb-2 row align-items-center">
-                                    <label for="email" class="col-sm-4 col-form-label">Email <i class="text-danger">*</i></label>
+                                    <label for="email" class="col-sm-4 col-form-label">Email <i
+                                            class="text-danger">*</i></label>
                                     <div class="col-sm-8">
                                         <input type="email" name="email" class="form-control" id="email" />
                                     </div>
@@ -187,11 +197,7 @@
                                     <label for="title" class="col-sm-4 col-form-label">Title</label>
                                     <div class="col-sm-8">
                                         <select name="title" id="title" class="form-control select2">
-                                            @if($titles->count() >= 0)
-                                                @foreach ($titles as $title)
-                                                    <option value="{{ $title->id }}">{{ $title->name }}</option>
-                                                @endforeach
-                                            @endif
+                                            <option>Select option</option>
                                         </select>
                                     </div>
                                 </div>
@@ -207,12 +213,10 @@
                                 <div class="mb-2 row align-items-center">
                                     <label for="tags" class="col-sm-4 col-form-label">Tags</label>
                                     <div class="col-sm-8">
-                                       <select name="tags[]" id="tags" class="form-control select2" multiple>
-                                            @if($tags->count() >= 0)
-                                                @foreach ($tags as $tag)
-                                                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                                                @endforeach
-                                            @endif
+                                        <select name="tags[]" id="tags" class="form-control select2" multiple>
+                                            <option>Select option</option>
+                                            <option value="1">Tag 1</option>
+                                            <option value="2">Tag 2</option>
                                         </select>
                                     </div>
                                 </div>
@@ -221,7 +225,8 @@
                                     <div class="col-sm-4"></div>
                                     <div class="col-sm-8">
                                         <div class="form-check">
-                                            <input class="form-check-input" name="is_customer" type="checkbox" id="is_customer">
+                                            <input class="form-check-input" name="is_customer" type="checkbox"
+                                                id="is_customer">
                                             <label class="form-check-label" for="is_customer">Is Customer</label>
                                         </div>
                                     </div>
@@ -290,8 +295,10 @@
                                                             <div class="mb-2 row">
                                                                 <label class="col-sm-5 col-form-label">Salesperson?</label>
                                                                 <div class="col-sm-7">
-                                                                    <select name="salesperson" id="salesperson" class="form-control">
-                                                                        <option value="" selected disabled>Sales Person</option>
+                                                                    <select name="salesperson" id="salesperson"
+                                                                        class="form-control">
+                                                                        <option value="" selected disabled>Sales
+                                                                            Person</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -299,20 +306,23 @@
                                                                 <label class="col-sm-5 col-form-label">Payment
                                                                     Terms?</label>
                                                                 <div class="col-sm-7">
-                                                                    <input type="text" name="payment_terms" value="" class="form-control">
+                                                                    <input type="text" name="payment_terms"
+                                                                        value="" class="form-control">
                                                                 </div>
                                                             </div>
                                                             <div class="mb-2 row">
                                                                 <label class="col-sm-5 col-form-label">Pricelist?</label>
                                                                 <div class="col-sm-7">
-                                                                    <input type="text" name="pricelist" value="" class="form-control">
+                                                                    <input type="text" name="pricelist" value=""
+                                                                        class="form-control">
                                                                 </div>
                                                             </div>
                                                             <div class="mb-2 row">
                                                                 <label class="col-sm-5 col-form-label">Public Pricelist
                                                                     (SAR)</label>
                                                                 <div class="col-sm-7">
-                                                                    <input type="text" name="public_pricelist" value="" class="form-control">
+                                                                    <input type="text" name="public_pricelist"
+                                                                        value="" class="form-control">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -323,27 +333,32 @@
                                                             <div class="mb-2 row">
                                                                 <label class="col-sm-5 col-form-label">Buyer</label>
                                                                 <div class="col-sm-7">
-                                                                    <input name="buyer" type="text" class="form-control">
+                                                                    <input name="buyer" type="text"
+                                                                        class="form-control">
                                                                 </div>
                                                             </div>
                                                             <div class="mb-2 row">
                                                                 <label class="col-sm-5 col-form-label">Payment
                                                                     Terms?</label>
                                                                 <div class="col-sm-7">
-                                                                    <input name="payment_terms" value="" type="text" class="form-control">
+                                                                    <input name="payment_terms" value=""
+                                                                        type="text" class="form-control">
                                                                 </div>
                                                             </div>
                                                             <div class="mb-2 row">
                                                                 <label class="col-sm-5 col-form-label">Receipt
                                                                     Reminder?</label>
                                                                 <div class="col-sm-7">
-                                                                    <input name="receipt_reminder" value="" type="text" class="form-control">
+                                                                    <input name="receipt_reminder" value=""
+                                                                        type="text" class="form-control">
                                                                 </div>
                                                             </div>
                                                             <div class="mb-2 row">
-                                                                <label class="col-sm-5 col-form-label">Supplier Currency?</label>
+                                                                <label class="col-sm-5 col-form-label">Supplier
+                                                                    Currency?</label>
                                                                 <div class="col-sm-7">
-                                                                    <input type="text" name="supplier_currency" value="" class="form-control">
+                                                                    <input type="text" name="supplier_currency"
+                                                                        value="" class="form-control">
                                                                 </div>
                                                             </div>
 
@@ -352,7 +367,8 @@
                                                                 <label class="col-sm-5 col-form-label">Fiscal
                                                                     Position?</label>
                                                                 <div class="col-sm-7">
-                                                                    <input type="text" name="fiscal_position" value="" class="form-control">
+                                                                    <input type="text" name="fiscal_position"
+                                                                        value="" class="form-control">
                                                                 </div>
                                                             </div>
 
@@ -366,7 +382,8 @@
                                                             <div class="mb-2 row">
                                                                 <label class="col-sm-5 col-form-label">Reference</label>
                                                                 <div class="col-sm-7">
-                                                                    <input type="text" name="reference" value="" class="form-control">
+                                                                    <input type="text" name="reference" value=""
+                                                                        class="form-control">
                                                                 </div>
                                                             </div>
                                                             {{-- <div class="mb-2 row">
@@ -378,7 +395,8 @@
                                                             <div class="mb-2 row">
                                                                 <label class="col-sm-5 col-form-label">Website?</label>
                                                                 <div class="col-sm-7">
-                                                                    <input type="text" name="misc_website" value="" class="form-control">
+                                                                    <input type="text" name="misc_website"
+                                                                        value="" class="form-control">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -490,10 +508,12 @@
                                                                         placeholder="City" />
                                                                 </div>
                                                                 <div class="col-sm-4">
-                                                                
-                                                                         <select name="address_state" id="address_state" class="form-control">
-                                                                            <option value="" selected disabled>State</option>
-                                                                        </select>
+
+                                                                    <select name="address_state" id="address_state"
+                                                                        class="form-control">
+                                                                        <option value="" selected disabled>State
+                                                                        </option>
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                             <div class="mb-2 row align-items-center">
@@ -505,10 +525,12 @@
                                                                         placeholder="Zip Code" />
                                                                 </div>
                                                                 <div class="col-sm-4">
-                                                                   
-                                                                        <select name="address_country" id="address_country" class="form-control">
-                                                                            <option value="" selected disabled>Country</option>
-                                                                        </select>
+
+                                                                    <select name="address_country" id="address_country"
+                                                                        class="form-control">
+                                                                        <option value="" selected disabled>Country
+                                                                        </option>
+                                                                    </select>
                                                                 </div>
                                                             </div>
 
@@ -609,7 +631,7 @@
             });
 
 
-             // submit user form
+            // submit user form
             $('#submit').click(function(e) {
                 e.preventDefault(); // precautionary
 
@@ -625,13 +647,14 @@
                     processData: false,
                     success: function(response) {
                         if (response.status) {
-                            showToast("Organization created successfully!", "Success", "primary");
+                            showToast("Organization created successfully!", "Success",
+                                "primary");
                             setTimeout(() => {
-                                window.location.href = response.redirect_url;
-                            }, 
-                            3000);
-                            
-                        }else{
+                                    window.location.href = response.redirect_url;
+                                },
+                                3000);
+
+                        } else {
                             showToast(response.message, "Error", "danger");
                         }
                     },
@@ -647,7 +670,7 @@
 
 
 
-             function initSelect2Country(selector, modalId = null) {
+            function initSelect2Country(selector, modalId = null) {
                 $(selector).select2({
                     placeholder: 'Select Country',
                     dropdownParent: modalId ? $(modalId) : $(document.body),
@@ -655,11 +678,15 @@
                         url: "{{ route('general.countries') }}",
                         dataType: 'json',
                         delay: 250,
-                        data: function (params) {
-                            return { search: params.term };
+                        data: function(params) {
+                            return {
+                                search: params.term
+                            };
                         },
-                        processResults: function (data) {
-                            return { results: data.results };
+                        processResults: function(data) {
+                            return {
+                                results: data.results
+                            };
                         }
                     }
                 });
@@ -673,20 +700,22 @@
                         url: "{{ route('general.states') }}",
                         dataType: 'json',
                         delay: 250,
-                        data: function (params) {
+                        data: function(params) {
                             return {
                                 search: params.term,
                                 country_id: $(countrySelector).val()
                             };
                         },
-                        processResults: function (data) {
-                            return { results: data.results };
+                        processResults: function(data) {
+                            return {
+                                results: data.results
+                            };
                         }
                     }
                 });
 
                 // Jab country change ho to state reset
-                $(countrySelector).on('change', function () {
+                $(countrySelector).on('change', function() {
                     $(selector).val(null).trigger('change');
                 });
             }
@@ -700,11 +729,15 @@
                         url: "{{ route('general.users') }}",
                         dataType: 'json',
                         delay: 250,
-                        data: function (params) {
-                            return { search: params.term };
+                        data: function(params) {
+                            return {
+                                search: params.term
+                            };
                         },
-                        processResults: function (data) {
-                            return { results: data.results };
+                        processResults: function(data) {
+                            return {
+                                results: data.results
+                            };
                         }
                     }
                 });
@@ -713,21 +746,21 @@
             // ----------------------
             // Normal form fields
             // ----------------------
-            initSelect2Country('#country');  
-            initSelect2State('#state', '#country');  
+            initSelect2Country('#country');
+            initSelect2State('#state', '#country');
             initSelect2SalePersons('#salesperson');
 
             // ----------------------
             // Modal fields
             // ----------------------
-            initSelect2Country('#address_country', '#addressModal');  
+            initSelect2Country('#address_country', '#addressModal');
             initSelect2State('#address_state', '#address_country', '#addressModal');
 
 
-           $('#title').select2({
+            $('#title').select2({
                 placeholder: "Select or add a title",
                 tags: true,
-                createTag: function (params) {
+                createTag: function(params) {
                     var term = $.trim(params.term);
 
                     if (term === '') {
@@ -753,7 +786,7 @@
                         newOption: true
                     };
                 },
-                templateResult: function (data) {
+                templateResult: function(data) {
                     var $result = $("<span></span>").text(data.text);
                     if (data.newOption) {
                         $result.append(" <em>(new)</em>");
@@ -763,7 +796,7 @@
             });
 
             // ✅ persist & always keep latest selected
-            $('#title').on('select2:select', function (e) {
+            $('#title').on('select2:select', function(e) {
                 var data = e.params.data;
 
                 // agar new option hai
@@ -774,7 +807,7 @@
                     }
                 }
 
-                
+
                 $('#title').val(data.id).trigger('change.select2');
             });
 
@@ -786,7 +819,7 @@
             $('#tags').select2({
                 placeholder: "Select or add tags",
                 tags: true,
-                createTag: function (params) {
+                createTag: function(params) {
                     var term = $.trim(params.term);
 
                     if (term === '') {
@@ -812,7 +845,7 @@
                         newOption: true
                     };
                 },
-                templateResult: function (data) {
+                templateResult: function(data) {
                     var $result = $("<span></span>").text(data.text);
                     if (data.newOption) {
                         $result.append(" <em>(new)</em>");
@@ -915,7 +948,8 @@
 
                     // Add hidden fields for all other data
                     Object.keys(addr).forEach(key => {
-                        if (key !== "address_name" && key !== "address_email" && key !== "address_phone") {
+                        if (key !== "address_name" && key !== "address_email" && key !==
+                            "address_phone") {
                             tbody.find("tr:last").append(
                                 `<input type="hidden" name="customer_address[${index}][${key}]" value="${addr[key]}">`
                             );
@@ -943,7 +977,7 @@
                 // console.log(data);
                 // $("#addressForm")[0].reset();
                 for (let key in data) {
-                    if (key === "address_type") continue; 
+                    if (key === "address_type") continue;
                     $(`#addressForm [name="${key}"]`).val(data[key]);
 
                     // console.log($(`#addressForm [name="${key}"]`));
