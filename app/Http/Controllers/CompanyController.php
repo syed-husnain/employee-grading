@@ -15,6 +15,7 @@ use App\Models\CustomerSalePurchase;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
+use App\Models\Employee;
 
 class CompanyController extends Controller
 {
@@ -28,50 +29,9 @@ class CompanyController extends Controller
 
   public function getData(Request $request)
   {
-    $companies = Company::with([
-      'country:id,name',
-      'state:id,name',
-      'title:id,name',
-      // 'sapCustomerRelation:id,customer_code'
-    ])->orderBy('id', 'desc')->select([
-      'id',
-      'type',
-      'name',
-      'image_url',
-      'job_position',
-      'country_id',
-      'city',
-      'state_id',
-      'zip',
-      'street',
-      'phone',
-      'mobile',
-      'email',
-      'tax_id',
-      'website_url',
-      'customer_rank',
-      'title_id',
-      'sap_customer_id',
-      'language',
-      'supplier_rank',
-      'internal_notes',
-      'is_customer',
-      'commercial_registration'
-    ]);
+    $companies = Employee::orderBy('id', 'desc');
 
     return DataTables::of($companies)
-      ->addColumn('type', function ($row) {
-        return $row->type == 'Individual' ? 'Sole Proprietor' : 'Company' ?? '';
-      })
-      ->addColumn('country_name', function ($row) {
-        return $row->country?->name ?? '';
-      })
-      ->addColumn('state_name', function ($row) {
-        return $row->state?->name ?? '';
-      })
-      ->addColumn('title_name', function ($row) {
-        return $row->title?->name ?? '';
-      })
       ->addColumn('action', function ($row) {
         return '';
       })
@@ -248,9 +208,11 @@ class CompanyController extends Controller
   /**
    * Display the specified resource.
    */
-  public function show(Company $company)
+  public function show($id)
   {
-    //
+    $employee = Employee::with('certificates')->findOrFail($id);
+
+    return view('content.customers.show', compact('employee'));
   }
 
   /**
