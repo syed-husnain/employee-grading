@@ -202,3 +202,32 @@ Route::get('/form/layouts-horizontal', [HorizontalForm::class, 'index'])->name('
 Route::get('/tables/basic', [TablesBasic::class, 'index'])->name('tables-basic');
 
 Route::get('/testpage', [TablesBasic::class, 'testpage']);
+
+
+
+
+// routes by fahad
+
+// CEO routes (no middleware for testing)
+Route::prefix('ceo')->group(function() {
+    Route::view('/dashboard', 'dashboard.ceo.dashboard')->name('ceo.dashboard');
+    Route::view('/insights', 'dashboard.ceo.insights')->name('ceo.insights');
+    Route::view('/master-data', 'dashboard.ceo.master-data')->name('ceo.master-data');
+});
+
+// HR
+Route::prefix('hr')->group(function() {
+    Route::view('/dashboard', 'dashboard.hr.dashboard')->name('hr.dashboard');
+    Route::view('/employee-management', 'dashboard.hr.employee-management')->name('hr.employee-management');
+    Route::view('/form-handling', 'dashboard.hr.form-handling')->name('hr.form-handling');
+    Route::view('/logs', 'dashboard.hr.logs')->name('hr.logs');
+    Route::view('/master-data', 'dashboard.hr.master-data')->name('hr.master-data');
+});
+
+// Employee
+Route::prefix('employee')->group(function() {
+    Route::view('/profile', 'dashboard.employee.profile')->name('employee.profile');
+    Route::view('/form', 'dashboard.employee.grading-form')->name('employee.form');
+    Route::view('/scorecard', 'dashboard.employee.scorecard')->name('employee.scorecard');
+    Route::view('/master-data', 'dashboard.employee.master-data')->name('employee.master-data');
+});
