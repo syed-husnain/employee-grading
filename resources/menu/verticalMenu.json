@@ -11,7 +11,7 @@
       "target": ""
     },
     {
-      "url": "",
+      "url": "master-data",
       "name": "Master Data",
       "icon": "icon-base bx bx-briefcase icon-lg",
       "slug": "leads",

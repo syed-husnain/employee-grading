@@ -231,3 +231,6 @@ Route::prefix('employee')->group(function () {
   Route::view('/scorecard', 'dashboard.employee.scorecard')->name('employee.scorecard');
   Route::view('/master-data', 'dashboard.employee.master-data')->name('employee.master-data');
 });
+Route::get('/master-data', function () {
+  return view('content.master-data.index');
+})->name('master-data');
