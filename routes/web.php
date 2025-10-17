@@ -93,6 +93,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/edit/{customer}', [CompanyController::class, 'edit'])->name('edit');
     Route::put('/update/{customer}', [CompanyController::class, 'update'])->name('update');
     Route::get('/destroy/{customer}', [CompanyController::class, 'destroy'])->name('destroy');
+    Route::get('/show/{customer}', [CompanyController::class, 'show'])->name('show');
   });
   Route::prefix('leads')->name('leads.')->group(function () {
     Route::get('/', [LeadController::class, 'index'])->name('index');
