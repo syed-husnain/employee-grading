@@ -204,3 +204,6 @@ Route::get('/tables/basic', [TablesBasic::class, 'index'])->name('tables-basic')
 Route::get('/testpage', [TablesBasic::class, 'testpage']);
 
 
+Route::get('/master-data', function () {
+    return view('content.master-data.index');
+})->name('master-data');
