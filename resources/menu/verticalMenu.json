@@ -1,59 +1,21 @@
 {
   "menu": [
     {
-      "menuHeader": "Sales"
+      "menuHeader": "CFO"
     },
     {
       "url": "",
-      "name": "Organizations",
+      "name": "Dashboard",
       "icon": "icon-base bx bx-group icon-lg",
       "slug": "Organizations",
-      "target": "",
-      "submenu": [
-        {
-          "url": "organizations.index",
-          "name": "List",
-          "slug": "organizations.index"
-        },
-        {
-          "url": "organizations.create",
-          "name": "Create",
-          "slug": "organizations.create"
-        }
-      ]
+      "target": ""
     },
     {
       "url": "",
-      "name": "Leads",
+      "name": "Master Data",
       "icon": "icon-base bx bx-briefcase icon-lg",
       "slug": "leads",
-      "target": "",
-      "submenu": [
-        {
-          "url": "leads.index",
-          "name": "List",
-          "slug": "leads.index"
-        },
-        {
-          "url": "leads.create",
-          "name": "Create",
-          "slug": "leads.create"
-        }
-      ]
-    },
-    {
-      "url": "",
-      "name": "Pipelines",
-      "icon": "icon-base bx bx-equalizer icon-lg bx-lg",
-      "slug": "pipelines",
-      "target": "",
-      "submenu": [
-        {
-          "url": "pipelines.index",
-          "name": "List",
-          "slug": "pipelines.index"
-        }
-      ]
+      "target": ""
     }
   ]
 }
