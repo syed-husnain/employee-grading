@@ -2,14 +2,159 @@
 
 @section('title', ' Organization Form')
 
+@section('page-style')
+
+    <style>
+        /* === Wrapper Styles === */
+        #FileUpload {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .wrapper {
+            margin: 30px;
+            padding: 10px;
+            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+            border-radius: 10px;
+            background-color: white;
+            width: 415px;
+            max-width: 95%;
+        }
+
+        /* === Upload Box === */
+        .upload {
+            margin: 10px;
+            height: 85px;
+            border: 8px dashed #b6b8ff45;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .upload p {
+            margin-top: 12px;
+            line-height: 1.2;
+            font-size: 18px;
+            color: #0c3214;
+            letter-spacing: 1px;
+        }
+
+        .upload__button {
+            background-color: #b6b8ff45;
+            border-radius: 10px;
+            padding: 0px 8px 0px 10px;
+        }
+
+        .upload__button:hover {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+
+        /* === Uploaded Files === */
+        .uploaded {
+            width: 100%;
+            margin: 10px 0;
+            background-color: #b6b8ff45;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .file {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            overflow: hidden;
+            /* important */
+        }
+
+        .file__name {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            color: #0c3214;
+            font-size: 16px;
+            letter-spacing: 1px;
+            gap: 10px;
+        }
+
+        .file__name p {
+            margin: 0;
+            flex: 1;
+            white-space: nowrap;
+            /* prevent text wrapping */
+            overflow: hidden;
+            /* hide overflow */
+            text-overflow: ellipsis;
+            /* show "..." */
+        }
+
+        .fa-times:hover {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+
+        .fa-file-pdf {
+            padding: 10px;
+            font-size: 35px;
+            color: #0c3214;
+            flex-shrink: 0;
+            /* prevent icon from shrinking */
+        }
+
+        /* === Progress Bar === */
+        .progress {
+            width: 100%;
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar-custom {
+            background-color: #6b6eff !important;
+        }
+
+        /* === Responsive Design === */
+        @media (max-width: 480px) {
+            .wrapper {
+                width: 95%;
+                padding: 8px;
+            }
+
+            .file__name {
+                font-size: 14px;
+            }
+
+            .fa-file-pdf {
+                font-size: 28px;
+                padding: 8px;
+            }
+
+            .upload p {
+                font-size: 16px;
+            }
+        }
+    </style>
+
+@endsection
 @section('content')
     <!-- Bootstrap Table with Header - Dark -->
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard-analytics') }}">Dashboard</a></li>
-            <li class="breadcrumb-item" aria-current="page"><a href="{{ route('organizations.index') }}">Organizations </a>
+            <li class="breadcrumb-item" aria-current="page"><a href="{{ route('organizations.index') }}">Employees </a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Add New Organization</li>
+            <li class="breadcrumb-item active" aria-current="page">Add New Employee</li>
         </ol>
     </nav>
     <!-- Basic Layout -->
@@ -17,8 +162,8 @@
         <div class="col-xl">
             <div class="card mb-12">
                 <div class="card-header card-header-custom d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Organization Form</h5>
-                    <small class="text-body float-end">Switch between Sole Proprietor and Company</small>
+                    <h5 class="mb-0">Employee Form</h5>
+
                 </div>
                 <div class="card-body mt-4">
                     <!-- Radio Buttons -->
@@ -27,15 +172,6 @@
                     <form id="customer-form" action="{{ route('organizations.store') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
-                        <div class="mb-4 d-flex align-items-center">
-                            <label class="me-3">Organization Type:</label>
-                            <label class="me-3">
-                                <input type="radio" name="customer_type" value="individual"> Sole Proprietor
-                            </label>
-                            <label>
-                                <input type="radio" name="customer_type" value="company" checked> Company
-                            </label>
-                        </div>
                         <div class="row">
                             <!-- Left Column -->
                             <div class="col-md-6">
@@ -48,153 +184,8 @@
                                     </div>
                                 </div>
 
-                                <div class="mb-2 row align-items-center company-field d-none">
-                                    <label for="company_name" class="col-sm-4 col-form-label">Company Name <i
-                                            class="text-danger">*</i></label>
-                                    <div class="col-sm-8">
-                                        <input type="text" name="company_name" class="form-control" id="company_name"
-                                            placeholder="e.g. Lumber Inc" />
-                                    </div>
-                                </div>
-
-                                {{-- <div class="mb-2 row align-items-center">
-                                    <label for="arabic_name" class="col-sm-4 col-form-label">Arabic Name</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="arabic_name"
-                                            placeholder="Arabic Name" />
-                                    </div>
-                                </div> --}}
-
                                 <div class="mb-2 row align-items-center">
-                                    <label for="contact" class="col-sm-4 col-form-label">Contact</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" name="street" class="form-control" id="contact"
-                                            placeholder="Street..." />
-                                    </div>
-                                </div>
-
-                                {{-- <div class="mb-2 row align-items-center">
-                                    <label class="col-sm-4 col-form-label"></label>
-                                    <div class="col-sm-8">
-                                        <input type="text" name="street2" class="form-control" placeholder="Street 2..." />
-                                    </div>
-                                </div> --}}
-
-                                <div class="mb-2 row align-items-center">
-                                    <label class="col-sm-4 col-form-label"></label>
-                                    <div class="col-sm-8">
-                                        <input type="text" name="city" class="form-control" placeholder="City" />
-                                    </div>
-                                </div>
-
-                                <div class="mb-2 row align-items-center">
-                                    <label class="col-sm-4 col-form-label"></label>
-                                    <div class="col-sm-8">
-                                        <select name="state" id="state" class="form-control">
-                                            <option value="" selected disabled>State</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="mb-2 row align-items-center">
-                                    <label class="col-sm-4 col-form-label"></label>
-                                    <div class="col-sm-8">
-                                        <input type="text" name="zip" class="form-control" placeholder="ZIP" />
-                                    </div>
-                                </div>
-
-                                <div class="mb-2 row align-items-center">
-                                    <label class="col-sm-4 col-form-label"></label>
-                                    <div class="col-sm-8">
-                                        <select name="country" id="country" class="form-control">
-                                            <option value="" selected disabled>Country</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="mb-2 row align-items-center">
-                                    <label for="tax_id" class="col-sm-4 col-form-label">Tax ID</label>
-                                    <div class="col-sm-8">
-                                        <input name="tax_id" type="text" class="form-control" id="tax_id"
-                                            placeholder="e.g. BE0477472701" />
-                                    </div>
-                                </div>
-
-                                <div class="mb-2 row align-items-center">
-                                    <label class="col-sm-4 col-form-label">Customer Rank</label>
-                                    <div class="col-sm-8">
-                                        <input type="number" name="customer_rank" class="form-control"
-                                            value="0" />
-                                    </div>
-                                </div>
-
-                                <div class="mb-2 row align-items-center">
-                                    <label class="col-sm-4 col-form-label">SAP Customer ID</label>
-                                    <div class="col-sm-8">
-                                        <input type="number" name="sap_customer_id" class="form-control"
-                                            value="0" />
-                                    </div>
-                                </div>
-
-                                <div class="mb-2 row align-items-center">
-                                    <label class="col-sm-4 col-form-label">Supplier Rank</label>
-                                    <div class="col-sm-8">
-                                        <input type="number" name="supplier_rank" class="form-control"
-                                            value="0" />
-                                    </div>
-                                </div>
-
-                                <div class="mb-2 row align-items-center">
-                                    <label class="col-sm-4 col-form-label">Commercial Registration</label>
-                                    <div class="col-sm-8">
-                                        <input type="number" name="commercial_registration" class="form-control"
-                                            value="0" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Right Column -->
-                            <div class="col-md-6">
-                                <div class="mb-2 row align-items-center individual-field">
-                                    <label for="job_position" class="col-sm-4 col-form-label">Job Position</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" name="job_position" class="form-control" id="job_position"
-                                            placeholder="e.g. Sales Director" />
-                                    </div>
-                                </div>
-
-                                <div class="mb-2 row align-items-center">
-                                    <label for="phone" class="col-sm-4 col-form-label">Phone</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" name="phone" class="form-control" id="phone" />
-                                    </div>
-                                </div>
-
-                                <div class="mb-2 row align-items-center">
-                                    <label for="mobile" class="col-sm-4 col-form-label">Mobile</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" name="mobile" class="form-control" id="mobile" />
-                                    </div>
-                                </div>
-
-                                <div class="mb-2 row align-items-center">
-                                    <label for="email" class="col-sm-4 col-form-label">Email <i
-                                            class="text-danger">*</i></label>
-                                    <div class="col-sm-8">
-                                        <input type="email" name="email" class="form-control" id="email" />
-                                    </div>
-                                </div>
-
-                                <div class="mb-2 row align-items-center">
-                                    <label for="website" class="col-sm-4 col-form-label">Website</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" name="website" class="form-control" id="website"
-                                            placeholder="e.g. https://www.odoo.com" />
-                                    </div>
-                                </div>
-
-                                <div class="mb-2 row align-items-center individual-field">
-                                    <label for="title" class="col-sm-4 col-form-label">Title</label>
+                                    <label for="title" class="col-sm-4 col-form-label">Education</label>
                                     <div class="col-sm-8">
                                         <select name="title" id="title" class="form-control select2">
                                             <option>Select option</option>
@@ -202,394 +193,173 @@
                                     </div>
                                 </div>
 
-                                {{-- <div class="mb-2 row align-items-center">
-                                    <label for="language" class="col-sm-4 col-form-label">Language</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" name="language" class="form-control" id="language"
-                                            value="English (US)" />
-                                    </div>
-                                </div> --}}
-
                                 <div class="mb-2 row align-items-center">
-                                    <label for="tags" class="col-sm-4 col-form-label">Tags</label>
+                                    <label for="online_certification" class="col-sm-4 col-form-label">Online
+                                        Certification</label>
                                     <div class="col-sm-8">
-                                        <select name="tags[]" id="tags" class="form-control select2" multiple>
+                                        <select name="online_certification" id="online_certification"
+                                            class="form-control select2">
                                             <option>Select option</option>
-                                            <option value="1">Tag 1</option>
-                                            <option value="2">Tag 2</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="mb-2 row align-items-center">
-                                    <div class="col-sm-4"></div>
+                                    <label for="experience_management" class="col-sm-4 col-form-label">Experience
+                                        Management</label>
                                     <div class="col-sm-8">
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="is_customer" type="checkbox"
-                                                id="is_customer">
-                                            <label class="form-check-label" for="is_customer">Is Customer</label>
-                                        </div>
+                                        <select name="experience_management" id="experience_management"
+                                            class="form-control select2">
+                                            <option>Select option</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-2 row align-items-center">
+                                    <label for="english_proficiency" class="col-sm-4 col-form-label">English
+                                        Proficiency</label>
+                                    <div class="col-sm-8">
+                                        <select name="english_proficiency" id="english_proficiency"
+                                            class="form-control select2">
+                                            <option>Select option</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-2 row align-items-center">
+                                    <label class="col-sm-4 col-form-label">Bonus</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="bonus" class="form-control"
+                                            placeholder="Executive Bonus" />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Right Column -->
+                            <div class="col-md-6">
+                                <div class="mb-2 row align-items-center">
+                                    <label for="designation" class="col-sm-4 col-form-label">Designation</label>
+                                    <div class="col-sm-8">
+                                        <select name="designation" id="designation" class="form-control select2">
+                                            <option>Select option</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-2 row align-items-center">
+                                    <label for="tech_certificate" class="col-sm-4 col-form-label">Tech Certificate</label>
+                                    <div class="col-sm-8">
+                                        <select name="tech_certificate" id="tech_certificate" class="form-control select2">
+                                            <option>Select option</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-2 row align-items-center">
+                                    <label for="experience_external" class="col-sm-4 col-form-label">Experience
+                                        External</label>
+                                    <div class="col-sm-8">
+                                        <select name="experience_external" id="experience_external"
+                                            class="form-control select2">
+                                            <option>Select option</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-2 row align-items-center">
+                                    <label for="experience_internal" class="col-sm-4 col-form-label">Experience
+                                        Internal</label>
+                                    <div class="col-sm-8">
+                                        <select name="experience_internal" id="experience_internal"
+                                            class="form-control select2">
+                                            <option>Select option</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-2 row align-items-center">
+                                    <label for="insurance_bracket" class="col-sm-4 col-form-label">Insurance
+                                        Bracket</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="insurance_bracket" class="form-control"
+                                            id="insurance_bracket" placeholder="Basic" />
+                                    </div>
+                                </div>
+
+                                <div class="mb-2 row align-items-center">
+                                    <label class="col-sm-4 col-form-label">Off Days</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="off_days" class="form-control"
+                                            placeholder="Not Eligible" />
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
+
+                        </div>
                         <div class="row">
-                            <div class="col">
-
-                                <div class="card mb-6">
-                                    <div class="nav-align-top">
-                                        <!-- Nav Tabs -->
-                                        <ul class="nav nav-tabs" id="formTabs" role="tablist">
-                                            <li class="nav-item" role="presentation">
-                                                <button class="nav-link active" id="contact-addresses-tab"
-                                                    data-bs-toggle="tab" data-bs-target="#contact-addresses"
-                                                    type="button" role="tab" aria-controls="contact-addresses"
-                                                    aria-selected="true">
-                                                    Contact & Addresses
-                                                </button>
-                                            </li>
-                                            {{-- <li class="nav-item" role="presentation">
-                                                <button class="nav-link" id="sales-purchases-tab" data-bs-toggle="tab"
-                                                    data-bs-target="#sales-purchases" type="button" role="tab"
-                                                    aria-controls="sales-purchases" aria-selected="false">
-                                                    Sales & Purchases
-                                                </button>
-                                            </li> --}}
-                                        </ul>
-
-                                        <!-- Tab Content -->
-                                        <div class="tab-content mt-3" id="formTabsContent">
-                                            <!-- Tab Content -->
-                                            <div class="tab-pane fade show active" id="contact-addresses" role="tabpanel"
-                                                aria-labelledby="contact-addresses-tab">
-                                                <div class="text-center my-3">
-                                                    <button type="button" class="btn btn-primary" id="add-new">+ Add
-                                                        New</button>
+                            <div class="col-md-12">
+                                <div id="FileUpload">
+                                    <div class="wrapper">
+                                        <div class="upload">
+                                            <p>Drag files here or <span class="upload__button">Browse</span></p>
+                                        </div>
+                                        <div class="uploaded uploaded--one">
+                                            <i class="far fa-file-pdf"></i>
+                                            <div class="file">
+                                                <div class="file__name">
+                                                    <p>Bachelor-Degree.pdf</p>
+                                                    <i class="fas fa-times"></i>
                                                 </div>
-
-                                                <!-- Table -->
-                                                <div class="table-responsive text-nowrap">
-                                                    <table class="table table-bordered d-none" id="address-table">
-                                                        <thead class="table-dark">
-                                                            <tr>
-                                                                <th>Type</th>
-                                                                <th>Name</th>
-                                                                <th>Email</th>
-                                                                <th>Phone</th>
-                                                                <th style="width: 150px;">Action</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody class="table-border-bottom-0"></tbody>
-                                                    </table>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-custom progress-bar-striped progress-bar-animated"
+                                                        style="width:100%"></div>
                                                 </div>
                                             </div>
-                                            <!-- Sales & Purchases Tab -->
-                                            <div class="tab-pane fade" id="sales-purchases" role="tabpanel"
-                                                aria-labelledby="sales-purchases-tab">
-                                                <form>
-                                                    <div class="row">
-                                                        <!-- Left Column -->
-                                                        <div class="col-md-6">
-                                                            <h5>Sales</h5>
-                                                            <div class="mb-2 row">
-                                                                <label class="col-sm-5 col-form-label">Salesperson?</label>
-                                                                <div class="col-sm-7">
-                                                                    <select name="salesperson" id="salesperson"
-                                                                        class="form-control">
-                                                                        <option value="" selected disabled>Sales
-                                                                            Person</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="mb-2 row">
-                                                                <label class="col-sm-5 col-form-label">Payment
-                                                                    Terms?</label>
-                                                                <div class="col-sm-7">
-                                                                    <input type="text" name="payment_terms"
-                                                                        value="" class="form-control">
-                                                                </div>
-                                                            </div>
-                                                            <div class="mb-2 row">
-                                                                <label class="col-sm-5 col-form-label">Pricelist?</label>
-                                                                <div class="col-sm-7">
-                                                                    <input type="text" name="pricelist" value=""
-                                                                        class="form-control">
-                                                                </div>
-                                                            </div>
-                                                            <div class="mb-2 row">
-                                                                <label class="col-sm-5 col-form-label">Public Pricelist
-                                                                    (SAR)</label>
-                                                                <div class="col-sm-7">
-                                                                    <input type="text" name="public_pricelist"
-                                                                        value="" class="form-control">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <!-- Right Column -->
-                                                        <div class="col-md-6">
-                                                            <h5>Purchase</h5>
-                                                            <div class="mb-2 row">
-                                                                <label class="col-sm-5 col-form-label">Buyer</label>
-                                                                <div class="col-sm-7">
-                                                                    <input name="buyer" type="text"
-                                                                        class="form-control">
-                                                                </div>
-                                                            </div>
-                                                            <div class="mb-2 row">
-                                                                <label class="col-sm-5 col-form-label">Payment
-                                                                    Terms?</label>
-                                                                <div class="col-sm-7">
-                                                                    <input name="payment_terms" value=""
-                                                                        type="text" class="form-control">
-                                                                </div>
-                                                            </div>
-                                                            <div class="mb-2 row">
-                                                                <label class="col-sm-5 col-form-label">Receipt
-                                                                    Reminder?</label>
-                                                                <div class="col-sm-7">
-                                                                    <input name="receipt_reminder" value=""
-                                                                        type="text" class="form-control">
-                                                                </div>
-                                                            </div>
-                                                            <div class="mb-2 row">
-                                                                <label class="col-sm-5 col-form-label">Supplier
-                                                                    Currency?</label>
-                                                                <div class="col-sm-7">
-                                                                    <input type="text" name="supplier_currency"
-                                                                        value="" class="form-control">
-                                                                </div>
-                                                            </div>
-
-                                                            <h5>Fiscal Information</h5>
-                                                            <div class="mb-2 row">
-                                                                <label class="col-sm-5 col-form-label">Fiscal
-                                                                    Position?</label>
-                                                                <div class="col-sm-7">
-                                                                    <input type="text" name="fiscal_position"
-                                                                        value="" class="form-control">
-                                                                </div>
-                                                            </div>
-
-                                                            <h5>Misc</h5>
-                                                            {{-- <div class="mb-2 row">
-                                                                <label class="col-sm-5 col-form-label">Company ID?</label>
-                                                                <div class="col-sm-7">
-                                                                    <input type="text" name="company_id" value="" class="form-control">
-                                                                </div>
-                                                            </div> --}}
-                                                            <div class="mb-2 row">
-                                                                <label class="col-sm-5 col-form-label">Reference</label>
-                                                                <div class="col-sm-7">
-                                                                    <input type="text" name="reference" value=""
-                                                                        class="form-control">
-                                                                </div>
-                                                            </div>
-                                                            {{-- <div class="mb-2 row">
-                                                                <label class="col-sm-5 col-form-label">Company</label>
-                                                                <div class="col-sm-7">
-                                                                    <input type="text" name="company" value="" class="form-control">
-                                                                </div>
-                                                            </div> --}}
-                                                            <div class="mb-2 row">
-                                                                <label class="col-sm-5 col-form-label">Website?</label>
-                                                                <div class="col-sm-7">
-                                                                    <input type="text" name="misc_website"
-                                                                        value="" class="form-control">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
+                                        </div>
+                                        <div class="uploaded uploaded--two">
+                                            <i class="far fa-file-pdf"></i>
+                                            <div class="file">
+                                                <div class="file__name">
+                                                    <p>project management Certification.pdf</p>
+                                                    <i class="fas fa-times"></i>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-custom progress-bar-striped progress-bar-animated"
+                                                        style="width:80%"></div>
+                                                </div>
                                             </div>
                                         </div>
-
-                                    </div>
-
-
-
-
-                                </div>
-                            </div>
-                            <!-- Modal -->
-                            <div class="modal fade" id="addressModal" tabindex="-1" aria-labelledby="addressModalLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="addressModalLabel">Add / Edit Address</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form id="addressForm">
-                                                <input type="hidden" id="editIndex">
-
-                                                <!-- Radio Buttons -->
-                                                <div class="mb-3">
-                                                    <label class="form-label d-block">Select Address Type:</label>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input address-type" type="radio"
-                                                            name="address_type" value="contact" checked>
-                                                        <label class="form-check-label">Contact</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input address-type" type="radio"
-                                                            name="address_type" value="invoice">
-                                                        <label class="form-check-label">Invoice Address</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input address-type" type="radio"
-                                                            name="address_type" value="delivery">
-                                                        <label class="form-check-label">Delivery Address</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input address-type" type="radio"
-                                                            name="address_type" value="followup">
-                                                        <label class="form-check-label">Follow-up Address</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input address-type" type="radio"
-                                                            name="address_type" value="other">
-                                                        <label class="form-check-label">Other Address</label>
-                                                    </div>
+                                        <div class="uploaded uploaded--three">
+                                            <i class="far fa-file-pdf"></i>
+                                            <div class="file">
+                                                <div class="file__name">
+                                                    <p>My-Document.pdf</p>
+                                                    <i class="fas fa-times"></i>
                                                 </div>
-                                                <div class="row">
-                                                    <!-- Left Column -->
-                                                    <div class="col-md-6">
-                                                        <div class="mb-2 row align-items-center">
-                                                            <label for="full_name"
-                                                                class="col-sm-4 col-form-label">Name</label>
-                                                            <div class="col-sm-8">
-                                                                <input type="text" class="form-control"
-                                                                    id="address_name" name="address_name"
-                                                                    placeholder="e.g. Brandon Freeman" />
-                                                            </div>
-                                                        </div>
-                                                        <!-- Contact Fields -->
-                                                        <div class="contact-fields">
-                                                            <div class="mb-2 row align-items-center">
-                                                                <label for="adress_title"
-                                                                    class="col-sm-4 col-form-label">Title</label>
-                                                                <div class="col-sm-8">
-                                                                    <input type="text" class="form-control"
-                                                                        id="adress_title" name="address_title"
-                                                                        placeholder="e.g. Lumber Inc" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="mb-2 row align-items-center">
-                                                                <label for="adress_job_position"
-                                                                    class="col-sm-4 col-form-label">Job Position</label>
-                                                                <div class="col-sm-8">
-                                                                    <input type="text" class="form-control"
-                                                                        id="adress_job_position"
-                                                                        name="adress_job_position"
-                                                                        placeholder="e.g. Lumber Inc" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Address Fields -->
-                                                        <div class="address-fields d-none">
-                                                            <div class="mb-2 row align-items-center">
-                                                                <label for="address_street"
-                                                                    class="col-sm-4 col-form-label">Address</label>
-                                                                <div class="col-sm-8">
-                                                                    <input type="text" class="form-control"
-                                                                        id="address_street" name="address_street"
-                                                                        placeholder="Street" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="mb-2 row align-items-center">
-                                                                <label for="address_city"
-                                                                    class="col-sm-4 col-form-label"></label>
-                                                                <div class="col-sm-4">
-                                                                    <input type="text" class="form-control"
-                                                                        id="address_city" name="address_city"
-                                                                        placeholder="City" />
-                                                                </div>
-                                                                <div class="col-sm-4">
-
-                                                                    <select name="address_state" id="address_state"
-                                                                        class="form-control">
-                                                                        <option value="" selected disabled>State
-                                                                        </option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="mb-2 row align-items-center">
-                                                                <label for="address_zip"
-                                                                    class="col-sm-4 col-form-label"></label>
-                                                                <div class="col-sm-4">
-                                                                    <input type="text" class="form-control"
-                                                                        id="address_zip" name="address_zip"
-                                                                        placeholder="Zip Code" />
-                                                                </div>
-                                                                <div class="col-sm-4">
-
-                                                                    <select name="address_country" id="address_country"
-                                                                        class="form-control">
-                                                                        <option value="" selected disabled>Country
-                                                                        </option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                    <!-- Right Column -->
-                                                    <div class="col-md-6">
-                                                        <div class="mb-2 row align-items-center individual-field">
-                                                            <label for="address_email"
-                                                                class="col-sm-4 col-form-label">Email</label>
-                                                            <div class="col-sm-8">
-                                                                <input type="text" class="form-control"
-                                                                    id="address_email" name="address_email"
-                                                                    placeholder="e.g. abc@example.com" />
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="mb-2 row align-items-center">
-                                                            <label for="address_phone"
-                                                                class="col-sm-4 col-form-label">Phone</label>
-                                                            <div class="col-sm-8">
-                                                                <input type="text" class="form-control"
-                                                                    id="address_phone" name="address_phone" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-2 row align-items-center">
-                                                            <label for="address_mobile"
-                                                                class="col-sm-4 col-form-label">Mobile</label>
-                                                            <div class="col-sm-8">
-                                                                <input type="text" class="form-control"
-                                                                    id="address_mobile" name="address_mobile" />
-                                                            </div>
-                                                        </div>
-
-
-                                                    </div>
-
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer mt-2">
-                                            <button type="button" class="btn btn-label-secondary" id="saveClose">Save &
-                                                Close</button>
-                                            <button type="button" class="btn btn-primary" id="saveAddMore">Save & Add
-                                                More</button>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-custom progress-bar-striped progress-bar-animated"
+                                                        style="width:60%"></div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="mt-4">
                             <button type="submit" id="submit" class="btn btn-primary">Save</button>
                         </div>
                     </form>
                 </div>
+
+
+
             </div>
         </div>
     </div>
+
 
 @endsection
 @section('page-script')
