@@ -1,9 +1,14 @@
+@section('sidebar-color', 'linear-gradient(180deg, #6a11cb, #2575fc)')
+@section('role-name', 'Employee')
+@section('role-title', 'My Dashboard')
+
+
 @extends('layouts.app')
 @section('title', 'My Profile')
 @section('sidebar-links')
-<li><a href="{{ route('employee.profile') }}" class="nav-link text-white active">Profile</a></li>
-<li><a href="{{ route('employee.form') }}" class="nav-link text-white">Grading Form</a></li>
-<li><a href="{{ route('employee.scorecard') }}" class="nav-link text-white">Scorecard</a></li>
+<li><a href="{{ route('employee.profile') }}" class="nav-link text-white active"><i class="bi bi-person-circle me-2"></i>Profile</a></li>
+<li><a href="{{ route('employee.form') }}" class="nav-link text-white"><i class="bi bi-pencil-square me-2"></i>Grading Form</a></li>
+<li><a href="{{ route('employee.scorecard') }}" class="nav-link text-white"><i class="bi bi-card-checklist me-2"></i>Scorecard</a></li>
 <li><a href="{{ route('employee.master-data') }}" class="nav-link text-white">Master Data</a></li>
 @endsection
 @section('page-title', 'Profile & Grading History')

@@ -1,10 +1,14 @@
+@section('sidebar-color', 'linear-gradient(180deg, #264653, #2a9d8f)')
+@section('role-name', 'Human Resources')
+@section('role-title', 'HR Panel')
+
 @extends('layouts.app')
 @section('title', 'HR Dashboard')
 @section('sidebar-links')
-<li><a href="{{ route('hr.dashboard') }}" class="nav-link text-white active">Dashboard</a></li>
-<li><a href="{{ route('hr.employee-management') }}" class="nav-link text-white">Employee Management</a></li>
-<li><a href="{{ route('hr.form-handling') }}" class="nav-link text-white">Form Handling</a></li>
-<li><a href="{{ route('hr.logs') }}" class="nav-link text-white">Logs</a></li>
+<li><a href="{{ route('hr.dashboard') }}" class="nav-link text-white active"><i class="bi bi-people me-2"></i>Dashboard</a></li>
+<li><a href="{{ route('hr.employee-management') }}" class="nav-link text-white"><i class="bi bi-person-lines-fill me-2"></i>Employee Management</a></li>
+<li><a href="{{ route('hr.form-handling') }}" class="nav-link text-white"><i class="bi bi-ui-checks-grid me-2"></i>Form Handling</a></li>
+<li><a href="{{ route('hr.logs') }}" class="nav-link text-white"><i class="bi bi-journal-text me-2"></i>Logs</a></li>
 <li><a href="{{ route('hr.master-data') }}" class="nav-link text-white">Master Data</a></li>
 @endsection
 @section('page-title', 'HR Dashboard')

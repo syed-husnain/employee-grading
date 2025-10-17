@@ -1,12 +1,22 @@
 @extends('layouts.app')
 @section('title', 'Insights')
+
+{{-- CEO UI Config --}}
+@section('sidebar-color', 'linear-gradient(180deg, #1d3557, #457b9d)')
+@section('role-title', 'CEO Dashboard')
+@section('role-name', 'Chief Executive Officer')
+
+{{-- Sidebar Links --}}
 @section('sidebar-links')
-<li><a href="{{ route('ceo.dashboard') }}" class="nav-link text-white">Dashboard</a></li>
-<li><a href="{{ route('ceo.insights') }}" class="nav-link text-white active">Insights</a></li>
-<li><a href="{{ route('ceo.master-data') }}" class="nav-link text-white">Master Data</a></li>
+<li><a href="{{ route('ceo.dashboard') }}" class="nav-link text-white"><i class="bi bi-house-door me-2"></i>Dashboard</a></li>
+<li><a href="{{ route('ceo.insights') }}" class="nav-link text-white active"><i class="bi bi-bar-chart me-2"></i>Insights</a></li>
+<li><a href="{{ route('ceo.master-data') }}" class="nav-link text-white"><i class="bi bi-database me-2"></i>Master Data</a></li>
 @endsection
+
+{{-- Page Title --}}
 @section('page-title', 'Promotion & Bonus Insights')
 
+{{-- Page Content --}}
 @section('content')
 <div class="card p-3 shadow">
   <div class="d-flex justify-content-between mb-3">
