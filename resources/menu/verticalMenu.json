@@ -4,17 +4,17 @@
       "menuHeader": "CFO"
     },
     {
-      "url": "",
+      "url": "dashboard-analytics",
       "name": "Dashboard",
       "icon": "icon-base bx bx-group icon-lg",
-      "slug": "Organizations",
+      "slug": "dashboard-analytics",
       "target": ""
     },
     {
       "url": "master-data",
       "name": "Master Data",
       "icon": "icon-base bx bx-briefcase icon-lg",
-      "slug": "leads",
+      "slug": "master-data",
       "target": ""
     }
   ]

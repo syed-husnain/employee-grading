@@ -50,7 +50,7 @@
                 <div class="card shadow-lg rounded-3 animate__animated animate__fadeInLeft animate__delay-0.5s">
                     <div class="card-header d-flex justify-content-between align-items-center bg-gradient-purple" style="background: linear-gradient(135deg, #cbb4f1, #a281e5); color: white; border-radius: 0.5rem 0.5rem 0 0;">
                         <h5 class="mb-0 d-flex align-items-center"><i class="bi bi-book me-2"></i> Education Grade</h5> <!-- Added Bootstrap Icon -->
-                        <span class="badge bg-light text-dark">Verified 100%</span>
+                        <!-- <span class="badge bg-light text-dark">Verified 100%</span> -->
                     </div>
                     <div class="card-body p-3">
                         <div class="table-responsive">
@@ -67,6 +67,10 @@
                                     <tr><td>Bachelors</td><td>4</td></tr>
                                     <tr><td>Masters</td><td>5</td></tr>
                                     <tr><td>Ph.D</td><td>7</td></tr>
+                                    <tr><td>Verified</td><td>100%</td></tr>
+                                    <tr><td>UnVerified</td><td>25%</td></tr>
+                                    <tr><td>Relevant</td><td>100%</td></tr>
+                                    <tr><td>Irrelevant</td><td>20%</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -79,7 +83,7 @@
                 <div class="card shadow-lg rounded-3 animate__animated animate__fadeInRight animate__delay-0.5s">
                     <div class="card-header d-flex justify-content-between align-items-center bg-gradient-green" style="background: linear-gradient(135deg, #b2f1c7, #7fd8a1); color: white; border-radius: 0.5rem 0.5rem 0 0;">
                         <h5 class="mb-0 d-flex align-items-center"><i class="bi bi-certificate me-2"></i> Tech Certificate Grade</h5> <!-- Added Bootstrap Icon -->
-                        <span class="badge bg-light text-dark">Relevant 100%</span>
+                        <!-- <span class="badge bg-light text-dark">Relevant 100%</span> -->
                     </div>
                     <div class="card-body p-3">
                         <div class="table-responsive">
@@ -98,6 +102,10 @@
                                     <tr><td>3 Year</td><td>4</td></tr>
                                     <tr><td>4 Year</td><td>5</td></tr>
                                     <tr><td>5 Year</td><td>6</td></tr>
+                                    <tr><td>Verified</td><td>100%</td></tr>
+                                    <tr><td>UnVerified</td><td>25%</td></tr>
+                                    <tr><td>Relevant</td><td>100%</td></tr>
+                                    <tr><td>Irrelevant</td><td>20%</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -110,7 +118,7 @@
                 <div class="card shadow-lg rounded-3 animate__animated animate__fadeInLeft animate__delay-1s">
                     <div class="card-header d-flex justify-content-between align-items-center bg-gradient-pink" style="background: linear-gradient(135deg, #f3d4f1, #e29ad6); color: white; border-radius: 0.5rem 0.5rem 0 0;">
                         <h5 class="mb-0 d-flex align-items-center"><i class="bi bi-briefcase me-2"></i> Experience - External</h5> <!-- Added Bootstrap Icon -->
-                        <span class="badge bg-light text-dark">Verified 100%</span>
+                        <!-- <span class="badge bg-light text-dark">Verified 100%</span> -->
                     </div>
                     <div class="card-body p-3">
                         <div class="table-responsive">
@@ -135,6 +143,8 @@
                                     <tr><td>9 Year</td><td>5.5</td></tr>
                                     <tr><td>10 Year</td><td>6</td></tr>
                                     <tr><td>More than 10 Year</td><td>7</td></tr>
+                                    <tr><td>Verified</td><td>100%</td></tr>
+                                    <tr><td>UnVerified</td><td>50%</td></tr>
                                 </tbody>
                             </table>
                         </div>
