@@ -35,7 +35,7 @@
 
                 <div class="dt-buttons btn-group flex-wrap d-flex gap-4 mb-md-0 mb-6" bis_skin_checked="1">
 
-                    <a href="{{ route('organizations.create') }}" class="btn btn-primary">Add New Employee</a>
+                    <a href="{{ route('employees.create') }}" class="btn btn-primary">Add New Employee</a>
 
                 </div>
             </div>
@@ -92,7 +92,7 @@
                 processing: true,
                 serverSide: true,
                 stateSave: true, // save state in localStorage
-                ajax: "{{ route('organizations.data') }}",
+                ajax: "{{ route('employees.data') }}",
                 columns: [{
                         data: 'name',
                         name: 'name'
@@ -230,7 +230,7 @@
                 if (data) {
                     let companyId = data.id; // jo backend se aya h
                     // yahan aap edit form open karwa saktay ho
-                    window.location.href = "{{ route('organizations.edit', ':id') }}".replace(':id',
+                    window.location.href = "{{ route('employees.edit', ':id') }}".replace(':id',
                         companyId);
                     // ya modal open karwana ho to ajax call se form load karao
                 }

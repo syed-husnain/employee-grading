@@ -14,7 +14,7 @@
             {{-- <nav class="page-breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard-analytics') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('organizations.index') }}">Organizations
+                    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('employees.index') }}">Organizations
                         </a></li>
                     <li class="breadcrumb-item active" aria-current="page">Edit Organization</li>
                 </ol>

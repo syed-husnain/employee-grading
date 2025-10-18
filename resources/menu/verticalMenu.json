@@ -5,8 +5,8 @@
     },
     {
       "url": "dashboard-analytics",
-      "name": "Dashboard",
-      "icon": "icon-base bx bx-group icon-lg",
+      "name": " Dashboard",
+      "icon": "fa-brands fa-sellsy",
       "slug": "dashboard-analytics",
       "target": ""
     },
@@ -15,6 +15,55 @@
       "name": "Master Data",
       "icon": "icon-base bx bx-briefcase icon-lg",
       "slug": "master-data",
+      "target": ""
+    },
+    {
+      "url": "score-card",
+      "name": "Score Card",
+      "icon": "icon-base bx bx-id-card icon-lg",
+      "slug": "score-card",
+      "target": ""
+    },
+    {
+      "menuHeader": "HR"
+    },
+    {
+      "url": "employees.index",
+      "name": "Employees",
+      "icon": "icon-base bx bx-group icon-lg",
+      "slug": "employees.index",
+      "target": ""
+    },
+    {
+      "url": "master-data",
+      "name": "Master Data",
+      "icon": "icon-base bx bx-briefcase icon-lg",
+      "slug": "master-data",
+      "target": ""
+    },
+    {
+      "url": "score-card",
+      "name": "Score Card",
+      "icon": "icon-base bx bx-id-card icon-lg",
+      "slug": "score-card",
+      "target": ""
+    },
+    {
+      "menuHeader": "Employees"
+    },
+    {
+      "url": "employees.create",
+      "name": "Manage Profile",
+      "icon": "icon-base bx bx-group icon-lg",
+      "slug": "employees.create",
+      "target": ""
+    },
+    {
+      "url": "master-data",
+      "name": "Master Data",
+      "icon": "icon-base bx bx-briefcase icon-lg",
+      "slug": "master-data",
+      "param": "auth_id",
       "target": ""
     },
     {

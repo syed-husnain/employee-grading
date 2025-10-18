@@ -193,7 +193,7 @@ class CompanyController extends Controller
         'status' => true,
         'message' => 'Organization created successfully.',
         'data'    => $customer,
-        'redirect_url' => route('organizations.index')
+        'redirect_url' => route('employees.index')
       ], 201);
     } catch (\Exception $e) {
       DB::rollBack();
@@ -361,7 +361,7 @@ class CompanyController extends Controller
       return response()->json([
         'status' => true,
         'message' => 'Organization updated successfully.',
-        'redirect_url' => route('organizations.index')
+        'redirect_url' => route('employees.index')
       ], 200);
     } catch (\Exception $e) {
       DB::rollBack();

@@ -152,7 +152,7 @@
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard-analytics') }}">Dashboard</a></li>
-            <li class="breadcrumb-item" aria-current="page"><a href="{{ route('organizations.index') }}">Employees </a>
+            <li class="breadcrumb-item" aria-current="page"><a href="{{ route('employees.index') }}">Employees </a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">Add New Employee</li>
         </ol>
@@ -169,7 +169,7 @@
                     <!-- Radio Buttons -->
 
 
-                    <form id="customer-form" action="{{ route('organizations.store') }}" method="POST"
+                    <form id="customer-form" action="{{ route('employees.store') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="row">

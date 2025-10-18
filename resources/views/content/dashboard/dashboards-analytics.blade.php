@@ -3,134 +3,205 @@
 @section('title', 'Dashboard - Analytics')
 
 @section('vendor-style')
-@vite('resources/assets/vendor/libs/apex-charts/apex-charts.scss')
+    @vite('resources/assets/vendor/libs/apex-charts/apex-charts.scss')
 @endsection
 
 @section('vendor-script')
-@vite('resources/assets/vendor/libs/apex-charts/apexcharts.js')
+    @vite('resources/assets/vendor/libs/apex-charts/apexcharts.js')
 @endsection
 
 @section('page-script')
-@vite('resources/assets/js/dashboards-analytics.js')
+    @vite('resources/assets/js/dashboards-analytics.js')
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  // Example static data
-  const data = {
-    gradeDistribution: {
-      labels: ['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4'],
-      series: [15, 30, 40, 15],
-    },
-    departmentAverage: {
-      labels: ['IT', 'HR', 'Marketing', 'Finance'],
-      series: [3.8, 4.1, 3.5, 4.3],
-    },
-    performanceTrend: {
-      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-      series: [3.6, 3.7, 3.9, 4.0, 4.1, 4.2],
-    },
-    promotionEligibility: {
-      labels: ['Eligible', 'Under Review', 'Not Eligible'],
-      series: [24, 10, 66],
-    },
-    bonusDistribution: {
-      labels: ['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4'],
-      series: [
-        { name: 'Bonus', data: [25, 20, 10, 5] },
-        { name: 'Insurance', data: [20, 15, 8, 5] }
-      ],
-    },
-    certificateStatus: {
-      labels: ['Verified', 'Pending', 'Rejected'],
-      series: [80, 15, 5],
-    }
-  };
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Example static data
+            const data = {
+                gradeDistribution: {
+                    labels: ['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4'],
+                    series: [15, 30, 40, 15],
+                },
+                departmentAverage: {
+                    labels: ['IT', 'HR', 'Marketing', 'Finance'],
+                    series: [3.8, 4.1, 3.5, 4.3],
+                },
+                performanceTrend: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    series: [3.6, 3.7, 3.9, 4.0, 4.1, 4.2],
+                },
+                promotionEligibility: {
+                    labels: ['Eligible', 'Under Review', 'Not Eligible'],
+                    series: [24, 10, 66],
+                },
+                bonusDistribution: {
+                    labels: ['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4'],
+                    series: [{
+                            name: 'Bonus',
+                            data: [25, 20, 10, 5]
+                        },
+                        {
+                            name: 'Insurance',
+                            data: [20, 15, 8, 5]
+                        }
+                    ],
+                },
+                certificateStatus: {
+                    labels: ['Verified', 'Pending', 'Rejected'],
+                    series: [80, 15, 5],
+                }
+            };
 
-  // 🌈 Modern, balanced color palette
-  const chartColors = {
-    primary: '#5B8FF9',   // ocean blue
-    success: '#61DDAA',   // mint green
-    info: '#65789B',      // slate gray-blue
-    warning: '#F6BD16',   // warm gold
-    danger: '#E8684A',    // coral red
-    accent: '#7262FD'     // soft violet
-  };
+            // 🌈 Modern, balanced color palette
+            const chartColors = {
+                primary: '#5B8FF9', // ocean blue
+                success: '#61DDAA', // mint green
+                info: '#65789B', // slate gray-blue
+                warning: '#F6BD16', // warm gold
+                danger: '#E8684A', // coral red
+                accent: '#7262FD' // soft violet
+            };
 
-  // 1️⃣ Grade Distribution (Full Pie)
-  new ApexCharts(document.querySelector("#gradeDistributionChart"), {
-    chart: {
-      type: 'pie',
-      height: 320,
-      toolbar: { show: false },
-      dropShadow: { enabled: true, blur: 3, opacity: 0.1 },
-    },
-    series: data.gradeDistribution.series,
-    labels: data.gradeDistribution.labels,
-    colors: [
-      chartColors.primary,
-      chartColors.warning,
-      chartColors.accent,
-      chartColors.success
-    ],
-    legend: {
-      position: 'bottom',
-      fontSize: '13px',
-      labels: { colors: '#777' }
-    },
-    dataLabels: {
-      enabled: true,
-      formatter: (val, opts) => opts.w.config.series[opts.seriesIndex] + '%',
-      style: { fontSize: '13px', fontWeight: '500', colors: ['#fff'] }
-    },
-    tooltip: { y: { formatter: val => val + '%' } },
-    stroke: { width: 1, colors: ['#fff'] }
-  }).render();
+            // 1️⃣ Grade Distribution (Full Pie)
+            new ApexCharts(document.querySelector("#gradeDistributionChart"), {
+                chart: {
+                    type: 'pie',
+                    height: 320,
+                    toolbar: {
+                        show: false
+                    },
+                    dropShadow: {
+                        enabled: true,
+                        blur: 3,
+                        opacity: 0.1
+                    },
+                },
+                series: data.gradeDistribution.series,
+                labels: data.gradeDistribution.labels,
+                colors: [
+                    chartColors.primary,
+                    chartColors.warning,
+                    chartColors.accent,
+                    chartColors.success
+                ],
+                legend: {
+                    position: 'bottom',
+                    fontSize: '13px',
+                    labels: {
+                        colors: '#777'
+                    }
+                },
+                dataLabels: {
+                    enabled: true,
+                    formatter: (val, opts) => opts.w.config.series[opts.seriesIndex] + '%',
+                    style: {
+                        fontSize: '13px',
+                        fontWeight: '500',
+                        colors: ['#fff']
+                    }
+                },
+                tooltip: {
+                    y: {
+                        formatter: val => val + '%'
+                    }
+                },
+                stroke: {
+                    width: 1,
+                    colors: ['#fff']
+                }
+            }).render();
 
-  // ========================================
-  // 2️⃣ Department Average with Drill-down
-  // ========================================
-  
-  // Sample employee data for each department
-  const employeeData = {
-    'IT': [
-      { name: 'John Doe', score: 4.2 },
-      { name: 'Jane Smith', score: 3.8 },
-      { name: 'Mike Johnson', score: 4.0 },
-      { name: 'Sarah Williams', score: 3.5 },
-      { name: 'Tom Brown', score: 3.9 }
-    ],
-    'HR': [
-      { name: 'Emily Davis', score: 4.3 },
-      { name: 'Robert Miller', score: 4.0 },
-      { name: 'Lisa Anderson', score: 4.2 },
-      { name: 'David Wilson', score: 3.9 }
-    ],
-    'Marketing': [
-      { name: 'Anna Taylor', score: 3.7 },
-      { name: 'Chris Moore', score: 3.4 },
-      { name: 'Jessica Lee', score: 3.6 },
-      { name: 'Daniel White', score: 3.3 }
-    ],
-    'Finance': [
-      { name: 'Kevin Harris', score: 4.5 },
-      { name: 'Michelle Clark', score: 4.2 },
-      { name: 'James Lewis', score: 4.4 },
-      { name: 'Patricia Walker', score: 4.1 }
-    ]
-  };
+            // ========================================
+            // 2️⃣ Department Average with Drill-down
+            // ========================================
 
-  let deptChartInstance = null;
-  let currentView = 'department';
-  let currentDepartment = null;
-  let filteredEmployees = [];
+            // Sample employee data for each department
+            const employeeData = {
+                'IT': [{
+                        name: 'John Doe',
+                        score: 4.2
+                    },
+                    {
+                        name: 'Jane Smith',
+                        score: 3.8
+                    },
+                    {
+                        name: 'Mike Johnson',
+                        score: 4.0
+                    },
+                    {
+                        name: 'Sarah Williams',
+                        score: 3.5
+                    },
+                    {
+                        name: 'Tom Brown',
+                        score: 3.9
+                    }
+                ],
+                'HR': [{
+                        name: 'Emily Davis',
+                        score: 4.3
+                    },
+                    {
+                        name: 'Robert Miller',
+                        score: 4.0
+                    },
+                    {
+                        name: 'Lisa Anderson',
+                        score: 4.2
+                    },
+                    {
+                        name: 'David Wilson',
+                        score: 3.9
+                    }
+                ],
+                'Marketing': [{
+                        name: 'Anna Taylor',
+                        score: 3.7
+                    },
+                    {
+                        name: 'Chris Moore',
+                        score: 3.4
+                    },
+                    {
+                        name: 'Jessica Lee',
+                        score: 3.6
+                    },
+                    {
+                        name: 'Daniel White',
+                        score: 3.3
+                    }
+                ],
+                'Finance': [{
+                        name: 'Kevin Harris',
+                        score: 4.5
+                    },
+                    {
+                        name: 'Michelle Clark',
+                        score: 4.2
+                    },
+                    {
+                        name: 'James Lewis',
+                        score: 4.4
+                    },
+                    {
+                        name: 'Patricia Walker',
+                        score: 4.1
+                    }
+                ]
+            };
 
-  // Create control elements (search box and reset button)
-  const chartContainer = document.querySelector("#departmentAverageChart");
-  const controlsDiv = document.createElement('div');
-  controlsDiv.id = 'chartControls';
-  controlsDiv.className = 'mb-3';
-  controlsDiv.style.display = 'none';
-  controlsDiv.innerHTML = `
+            let deptChartInstance = null;
+            let currentView = 'department';
+            let currentDepartment = null;
+            let filteredEmployees = [];
+
+            // Create control elements (search box and reset button)
+            const chartContainer = document.querySelector("#departmentAverageChart");
+            const controlsDiv = document.createElement('div');
+            controlsDiv.id = 'chartControls';
+            controlsDiv.className = 'mb-3';
+            controlsDiv.style.display = 'none';
+            controlsDiv.innerHTML = `
     <div class="d-flex gap-2 align-items-center">
       <input type="text" id="employeeSearch" class="form-control form-control-sm" placeholder="Search employee..." style="max-width: 250px;">
       <button id="resetChart" class="btn btn-sm btn-outline-secondary">
@@ -138,368 +209,425 @@ document.addEventListener("DOMContentLoaded", function() {
       </button>
     </div>
   `;
-  chartContainer.parentElement.insertBefore(controlsDiv, chartContainer);
+            chartContainer.parentElement.insertBefore(controlsDiv, chartContainer);
 
-  // Function to render department chart
-  function renderDepartmentChart() {
-    const options = {
-      chart: {
-        type: 'bar',
-        height: 320,
-        events: {
-          dataPointSelection: function(event, chartContext, config) {
-            const departmentIndex = config.dataPointIndex;
-            const department = data.departmentAverage.labels[departmentIndex];
-            showEmployeeChart(department);
-          }
-        }
-      },
-      series: [{
-        name: 'Avg Grade',
-        data: data.departmentAverage.series
-      }],
-      xaxis: {
-        categories: data.departmentAverage.labels
-      },
-      colors: [chartColors.accent],
-      plotOptions: {
-        bar: {
-          borderRadius: 5,
-          distributed: false,
-          dataLabels: {
-            position: 'top'
-          }
-        }
-      },
-      dataLabels: {
-        enabled: true,
-        formatter: function(val) {
-          return val.toFixed(1);
-        },
-        offsetY: -20,
-        style: {
-          fontSize: '12px',
-          colors: ["#304758"]
-        }
-      },
-      tooltip: {
-        y: {
-          formatter: function(val) {
-            return val.toFixed(2) + ' avg score';
-          }
-        }
-      },
-      title: {
-        text: 'Click on a department to view employees',
-        align: 'center',
-        style: {
-          fontSize: '12px',
-          color: '#999'
-        }
-      }
-    };
+            // Function to render department chart
+            function renderDepartmentChart() {
+                const options = {
+                    chart: {
+                        type: 'bar',
+                        height: 320,
+                        events: {
+                            dataPointSelection: function(event, chartContext, config) {
+                                const departmentIndex = config.dataPointIndex;
+                                const department = data.departmentAverage.labels[departmentIndex];
+                                showEmployeeChart(department);
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Avg Grade',
+                        data: data.departmentAverage.series
+                    }],
+                    xaxis: {
+                        categories: data.departmentAverage.labels
+                    },
+                    colors: [chartColors.accent],
+                    plotOptions: {
+                        bar: {
+                            borderRadius: 5,
+                            distributed: false,
+                            dataLabels: {
+                                position: 'top'
+                            }
+                        }
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function(val) {
+                            return val.toFixed(1);
+                        },
+                        offsetY: -20,
+                        style: {
+                            fontSize: '12px',
+                            colors: ["#304758"]
+                        }
+                    },
+                    tooltip: {
+                        y: {
+                            formatter: function(val) {
+                                return val.toFixed(2) + ' avg score';
+                            }
+                        }
+                    },
+                    title: {
+                        text: 'Click on a department to view employees',
+                        align: 'center',
+                        style: {
+                            fontSize: '12px',
+                            color: '#999'
+                        }
+                    }
+                };
 
-    if (deptChartInstance) {
-      deptChartInstance.destroy();
-    }
+                if (deptChartInstance) {
+                    deptChartInstance.destroy();
+                }
 
-    deptChartInstance = new ApexCharts(chartContainer, options);
-    deptChartInstance.render();
-    currentView = 'department';
-    document.getElementById('chartControls').style.display = 'none';
-  }
+                deptChartInstance = new ApexCharts(chartContainer, options);
+                deptChartInstance.render();
+                currentView = 'department';
+                document.getElementById('chartControls').style.display = 'none';
+            }
 
-  // Function to render employee chart
-  function renderEmployeeChart(employees) {
-    const employeeNames = employees.map(emp => emp.name);
-    const employeeScores = employees.map(emp => emp.score);
+            // Function to render employee chart
+            function renderEmployeeChart(employees) {
+                const employeeNames = employees.map(emp => emp.name);
+                const employeeScores = employees.map(emp => emp.score);
 
-    const options = {
-      chart: {
-        type: 'bar',
-        height: 320
-      },
-      series: [{
-        name: 'Score',
-        data: employeeScores
-      }],
-      xaxis: {
-        categories: employeeNames,
-        labels: {
-          rotate: -45,
-          style: {
-            fontSize: '11px'
-          }
-        }
-      },
-      colors: [chartColors.primary],
-      plotOptions: {
-        bar: {
-          borderRadius: 5,
-          distributed: true,
-          dataLabels: {
-            position: 'top'
-          }
-        }
-      },
-      dataLabels: {
-        enabled: true,
-        formatter: function(val) {
-          return val.toFixed(1);
-        },
-        offsetY: -20,
-        style: {
-          fontSize: '12px',
-          colors: ["#304758"]
-        }
-      },
-      tooltip: {
-        y: {
-          formatter: function(val) {
-            return val.toFixed(2) + ' score';
-          }
-        }
-      },
-      legend: {
-        show: false
-      },
-      title: {
-        text: `${currentDepartment} Department - Employee Scores`,
-        align: 'left',
-        style: {
-          fontSize: '14px',
-          fontWeight: 'bold'
-        }
-      }
-    };
+                const options = {
+                    chart: {
+                        type: 'bar',
+                        height: 320
+                    },
+                    series: [{
+                        name: 'Score',
+                        data: employeeScores
+                    }],
+                    xaxis: {
+                        categories: employeeNames,
+                        labels: {
+                            rotate: -45,
+                            style: {
+                                fontSize: '11px'
+                            }
+                        }
+                    },
+                    colors: [chartColors.primary],
+                    plotOptions: {
+                        bar: {
+                            borderRadius: 5,
+                            distributed: true,
+                            dataLabels: {
+                                position: 'top'
+                            }
+                        }
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function(val) {
+                            return val.toFixed(1);
+                        },
+                        offsetY: -20,
+                        style: {
+                            fontSize: '12px',
+                            colors: ["#304758"]
+                        }
+                    },
+                    tooltip: {
+                        y: {
+                            formatter: function(val) {
+                                return val.toFixed(2) + ' score';
+                            }
+                        }
+                    },
+                    legend: {
+                        show: false
+                    },
+                    title: {
+                        text: `${currentDepartment} Department - Employee Scores`,
+                        align: 'left',
+                        style: {
+                            fontSize: '14px',
+                            fontWeight: 'bold'
+                        }
+                    }
+                };
 
-    if (deptChartInstance) {
-      deptChartInstance.destroy();
-    }
+                if (deptChartInstance) {
+                    deptChartInstance.destroy();
+                }
 
-    deptChartInstance = new ApexCharts(chartContainer, options);
-    deptChartInstance.render();
-  }
+                deptChartInstance = new ApexCharts(chartContainer, options);
+                deptChartInstance.render();
+            }
 
-  // Show employee chart for selected department
-  function showEmployeeChart(department) {
-    currentDepartment = department;
-    currentView = 'employee';
-    filteredEmployees = employeeData[department] || [];
-    
-    renderEmployeeChart(filteredEmployees);
-    document.getElementById('chartControls').style.display = 'block';
-    document.getElementById('employeeSearch').value = '';
-  }
+            // Show employee chart for selected department
+            function showEmployeeChart(department) {
+                currentDepartment = department;
+                currentView = 'employee';
+                filteredEmployees = employeeData[department] || [];
 
-  // Search functionality
-  document.addEventListener('input', function(e) {
-    if (e.target.id === 'employeeSearch') {
-      const searchTerm = e.target.value.toLowerCase();
-      const allEmployees = employeeData[currentDepartment] || [];
-      
-      if (searchTerm === '') {
-        filteredEmployees = allEmployees;
-      } else {
-        filteredEmployees = allEmployees.filter(emp => 
-          emp.name.toLowerCase().includes(searchTerm)
-        );
-      }
-      
-      renderEmployeeChart(filteredEmployees);
-    }
-  });
+                renderEmployeeChart(filteredEmployees);
+                document.getElementById('chartControls').style.display = 'block';
+                document.getElementById('employeeSearch').value = '';
+            }
 
-  // Reset button functionality
-  document.addEventListener('click', function(e) {
-    if (e.target.id === 'resetChart' || e.target.closest('#resetChart')) {
-      renderDepartmentChart();
-    }
-  });
+            // Search functionality
+            document.addEventListener('input', function(e) {
+                if (e.target.id === 'employeeSearch') {
+                    const searchTerm = e.target.value.toLowerCase();
+                    const allEmployees = employeeData[currentDepartment] || [];
 
-  // Initial render of department chart
-  renderDepartmentChart();
+                    if (searchTerm === '') {
+                        filteredEmployees = allEmployees;
+                    } else {
+                        filteredEmployees = allEmployees.filter(emp =>
+                            emp.name.toLowerCase().includes(searchTerm)
+                        );
+                    }
 
-  // ========================================
-  // End of Department Average Chart
-  // ========================================
+                    renderEmployeeChart(filteredEmployees);
+                }
+            });
 
-  // 3️⃣ Performance Trend
-  new ApexCharts(document.querySelector("#performanceTrendChart"), {
-    chart: { type: 'line', height: 320 },
-    series: [{ name: 'Avg Grade', data: data.performanceTrend.series }],
-    xaxis: { categories: data.performanceTrend.labels },
-    stroke: { curve: 'smooth', width: 3 },
-    colors: [chartColors.primary]
-  }).render();
+            // Reset button functionality
+            document.addEventListener('click', function(e) {
+                if (e.target.id === 'resetChart' || e.target.closest('#resetChart')) {
+                    renderDepartmentChart();
+                }
+            });
 
-  // 4️⃣ Promotion Eligibility
-  new ApexCharts(document.querySelector("#promotionEligibilityChart"), {
-    chart: { type: 'bar', height: 300 },
-    plotOptions: { bar: { horizontal: true, borderRadius: 6 } },
-    series: [{ data: data.promotionEligibility.series }],
-    xaxis: { categories: data.promotionEligibility.labels },
-    colors: [chartColors.success, chartColors.warning, chartColors.danger]
-  }).render();
+            // Initial render of department chart
+            renderDepartmentChart();
 
-  // 5️⃣ Bonus Distribution
-  new ApexCharts(document.querySelector("#bonusDistributionChart"), {
-    chart: { type: 'bar', stacked: true, height: 300 },
-    series: data.bonusDistribution.series,
-    xaxis: { categories: data.bonusDistribution.labels },
-    colors: [chartColors.primary, chartColors.success],
-    plotOptions: { bar: { borderRadius: 5 } }
-  }).render();
+            // ========================================
+            // End of Department Average Chart
+            // ========================================
 
-  // 6️⃣ Certificate Verification Status (Full Pie)
-  new ApexCharts(document.querySelector("#certificateStatusChart"), {
-    chart: {
-      type: 'pie',
-      height: 320,
-      toolbar: { show: false },
-      dropShadow: { enabled: true, blur: 3, opacity: 0.1 },
-    },
-    series: data.certificateStatus.series,
-    labels: data.certificateStatus.labels,
-    colors: [
-      chartColors.success,
-      chartColors.warning,
-      chartColors.danger
-    ],
-    legend: {
-      position: 'bottom',
-      fontSize: '13px',
-      labels: { colors: '#777' }
-    },
-    dataLabels: {
-      enabled: true,
-      formatter: (val, opts) => opts.w.config.series[opts.seriesIndex] + '%',
-      style: { fontSize: '13px', fontWeight: '500', colors: ['#fff'] }
-    },
-    tooltip: { y: { formatter: val => val + '%' } },
-    stroke: { width: 1, colors: ['#fff'] }
-  }).render();
-});
-</script>
+            // 3️⃣ Performance Trend
+            new ApexCharts(document.querySelector("#performanceTrendChart"), {
+                chart: {
+                    type: 'line',
+                    height: 320
+                },
+                series: [{
+                    name: 'Avg Grade',
+                    data: data.performanceTrend.series
+                }],
+                xaxis: {
+                    categories: data.performanceTrend.labels
+                },
+                stroke: {
+                    curve: 'smooth',
+                    width: 3
+                },
+                colors: [chartColors.primary]
+            }).render();
+
+            // 4️⃣ Promotion Eligibility
+            new ApexCharts(document.querySelector("#promotionEligibilityChart"), {
+                chart: {
+                    type: 'bar',
+                    height: 300
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: true,
+                        borderRadius: 6
+                    }
+                },
+                series: [{
+                    data: data.promotionEligibility.series
+                }],
+                xaxis: {
+                    categories: data.promotionEligibility.labels
+                },
+                colors: [chartColors.success, chartColors.warning, chartColors.danger]
+            }).render();
+
+            // 5️⃣ Bonus Distribution
+            new ApexCharts(document.querySelector("#bonusDistributionChart"), {
+                chart: {
+                    type: 'bar',
+                    stacked: true,
+                    height: 300
+                },
+                series: data.bonusDistribution.series,
+                xaxis: {
+                    categories: data.bonusDistribution.labels
+                },
+                colors: [chartColors.primary, chartColors.success],
+                plotOptions: {
+                    bar: {
+                        borderRadius: 5
+                    }
+                }
+            }).render();
+
+            // 6️⃣ Certificate Verification Status (Full Pie)
+            new ApexCharts(document.querySelector("#certificateStatusChart"), {
+                chart: {
+                    type: 'pie',
+                    height: 320,
+                    toolbar: {
+                        show: false
+                    },
+                    dropShadow: {
+                        enabled: true,
+                        blur: 3,
+                        opacity: 0.1
+                    },
+                },
+                series: data.certificateStatus.series,
+                labels: data.certificateStatus.labels,
+                colors: [
+                    chartColors.success,
+                    chartColors.warning,
+                    chartColors.danger
+                ],
+                legend: {
+                    position: 'bottom',
+                    fontSize: '13px',
+                    labels: {
+                        colors: '#777'
+                    }
+                },
+                dataLabels: {
+                    enabled: true,
+                    formatter: (val, opts) => opts.w.config.series[opts.seriesIndex] + '%',
+                    style: {
+                        fontSize: '13px',
+                        fontWeight: '500',
+                        colors: ['#fff']
+                    }
+                },
+                tooltip: {
+                    y: {
+                        formatter: val => val + '%'
+                    }
+                },
+                stroke: {
+                    width: 1,
+                    colors: ['#fff']
+                }
+            }).render();
+        });
+    </script>
 @endsection
 @section('content')
-<div class="row">
-  <div class="col-xxl-8 mb-6 order-0">
-    <div class="card">
-      <div class="d-flex align-items-start row">
-        <div class="col-sm-7">
-          <div class="card-body">
-            <h5 class="card-title text-primary mb-3">Welcome {{auth()->user()->name}}</h5>
-            <p class="mb-6">You have done 57% more leads today.</p>
-
-            {{-- <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a> --}}
-          </div>
-        </div>
-        <div class="col-sm-5 text-center text-sm-left">
-          <div class="card-body pb-0 px-0 px-md-6">
-            <img src="{{asset('assets/img/illustrations/man-with-laptop.png')}}" height="175" class="scaleX-n1-rtl" alt="View Badge User">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- <div class="col-lg-4 col-md-4 order-1">
     <div class="row">
-      <div class="col-lg-6 col-md-12 col-6 mb-6">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="card-title d-flex align-items-start justify-content-between mb-4">
-              <div class="avatar flex-shrink-0">
-                <img src="{{asset('assets/img/icons/unicons/chart-success.png')}}" alt="chart success" class="rounded">
-              </div>
-              {{-- <div class="dropdown">
-                <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="bx bx-dots-vertical-rounded text-muted"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                  <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                  <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+        <div class="col-xxl-8 mb-6 order-0">
+            <div class="card">
+                <div class="d-flex align-items-start row">
+                    <div class="col-sm-7">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary mb-3">Welcome {{ auth()->user()->name }}</h5>
+                            <p class="mb-6"></p>
+
+                            {{-- <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a> --}}
+                        </div>
+                    </div>
+                    <div class="col-sm-5 text-center text-sm-left">
+                        <div class="card-body pb-0 px-0 px-md-6">
+                            <img src="{{ asset('assets/img/illustrations/man-with-laptop.png') }}" height="175"
+                                class="scaleX-n1-rtl" alt="View Badge User">
+                        </div>
+                    </div>
                 </div>
-              </div> --}}
             </div>
-            <p class="mb-1">Customers</p>
-            <h4 class="card-title mb-3">12,628</h4>
-            <small class="text-success fw-medium"><i class='bx bx-up-arrow-alt'></i> +72.80%</small>
-          </div>
         </div>
-      </div>
-      <div class="col-lg-6 col-md-12 col-6 mb-6">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="card-title d-flex align-items-start justify-content-between mb-4">
-              <div class="avatar flex-shrink-0">
-                <img src="{{asset('assets/img/icons/unicons/wallet-info.png')}}" alt="wallet info" class="rounded">
-              </div>
-              {{-- <div class="dropdown">
-                <button class="btn p-0" type="button" id="cardOpt6" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="bx bx-dots-vertical-rounded text-muted"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
-                  <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                  <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+        <div class="col-lg-4 col-md-4 order-1">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-6 mb-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between mb-4">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="{{ asset('assets/img/icons/unicons/chart-success.png') }}" alt="chart success"
+                                        class="rounded">
+                                </div>
+                                {{-- <div class="dropdown">
+                                <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <i class="bx bx-dots-vertical-rounded text-muted"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                                  <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                  <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                </div>
+                              </div> --}}
+                            </div>
+                            <p class="mb-1">Total Employees</p>
+                            <h4 class="card-title mb-3">12,628</h4>
+                            {{-- <small class="text-success fw-medium"><i class='bx bx-up-arrow-alt'></i> +72.80%</small> --}}
+                        </div>
+                    </div>
                 </div>
-              </div> --}}
+                <div class="col-lg-6 col-md-12 col-6 mb-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between mb-4">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="{{ asset('assets/img/icons/unicons/wallet-info.png') }}" alt="wallet info"
+                                        class="rounded">
+                                </div>
+                                {{-- <div class="dropdown">
+                                      <button class="btn p-0" type="button" id="cardOpt6" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="bx bx-dots-vertical-rounded text-muted"></i>
+                                      </button>
+                                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
+                                        <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                      </div>
+                                    </div> --}}
+                            </div>
+                            <p class="mb-1">Active Employees</p>
+                            <h4 class="card-title mb-3">7,679</h4>
+                            {{-- <small class="text-success fw-medium"><i class='bx bx-up-arrow-alt'></i> +28.42%</small> --}}
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p class="mb-1">Companies</p>
-            <h4 class="card-title mb-3">4,679</h4>
-            <small class="text-success fw-medium"><i class='bx bx-up-arrow-alt'></i> +28.42%</small>
-          </div>
         </div>
-      </div>
-    </div>
-  </div> -->
-  <!-- Total Revenue -->
-  <div class="col-12 col-xxl-8 order-2 order-md-3 order-xxl-2 mb-6">
-    <div class="card">
-      <div class="row row-bordered g-0">
-        <div class="col-lg-8">
-          <div class="card-header d-flex align-items-center justify-content-between">
-            <div class="card-title mb-0">
-              <h5 class="m-0 me-2">Overall Performance</h5>
-            </div>
-            <div class="dropdown">
-              <button class="btn p-0" type="button" id="totalRevenue" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="bx bx-dots-vertical-rounded bx-lg text-muted"></i>
-              </button>
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="totalRevenue">
-                <a class="dropdown-item" href="javascript:void(0);">Select All</a>
-                <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-                <a class="dropdown-item" href="javascript:void(0);">Share</a>
-              </div>
-            </div>
-          </div>
-          <div id="totalRevenueChart" class="px-3"></div>
-        </div>
-        <div class="col-lg-4 d-flex align-items-center">
-          <div class="card-body px-xl-9">
-            <div class="text-center mb-6">
-              <div class="btn-group">
-                <button type="button" class="btn btn-outline-primary">
-                  <script>
-                  document.write(new Date().getFullYear())
+        <!-- Total Revenue -->
+        <div class="col-12 col-xxl-8 order-2 order-md-3 order-xxl-2 mb-6">
+            <div class="card">
+                <div class="row row-bordered g-0">
+                    <div class="col-lg-8">
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <div class="card-title mb-0">
+                                <h5 class="m-0 me-2">Overall Performance</h5>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn p-0" type="button" id="totalRevenue" data-bs-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <i class="bx bx-dots-vertical-rounded bx-lg text-muted"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="totalRevenue">
+                                    <a class="dropdown-item" href="javascript:void(0);">Select All</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Share</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="totalRevenueChart" class="px-3"></div>
+                    </div>
+                    <div class="col-lg-4 d-flex align-items-center">
+                        <div class="card-body px-xl-9">
+                            <div class="text-center mb-6">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-outline-primary">
+                                        <script>
+                                            document.write(new Date().getFullYear())
+                                        </script>
+                                    </button>
+                                    <button type="button"
+                                        class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span class="visually-hidden">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2024</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2023</a></li>
+                                        {{-- <li><a class="dropdown-item" href="javascript:void(0);">2019</a></li> --}}
+                                    </ul>
+                                </div>
+                            </div>
 
-                  </script>
-                </button>
-                <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                  <span class="visually-hidden">Toggle Dropdown</span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="javascript:void(0);">2024</a></li>
-                  <li><a class="dropdown-item" href="javascript:void(0);">2023</a></li>
-                  {{-- <li><a class="dropdown-item" href="javascript:void(0);">2019</a></li> --}}
-                </ul>
-              </div>
-            </div>
+                            <div id="growthChart"></div>
+                            {{-- <div class="text-center fw-medium my-6">62% Company Growth</div> --}}
 
-            <div id="growthChart"></div>
-            {{-- <div class="text-center fw-medium my-6">62% Company Growth</div> --}}
-
-            {{-- <div class="d-flex gap-3 justify-content-between">
+                            {{-- <div class="d-flex gap-3 justify-content-between">
               <div class="d-flex">
                 <div class="avatar me-2">
                   <span class="avatar-initial rounded-2 bg-label-primary"><i class="bx bx-dollar bx-lg text-primary"></i></span>
@@ -529,85 +657,139 @@ document.addEventListener("DOMContentLoaded", function() {
                 </div>
               </div>
             </div> --}}
-          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+        <!--/ Total Revenue -->
+        <div class="col-12 col-md-8 col-lg-12 col-xxl-4 order-3 order-md-2">
+            <div class="row">
+                <div class="col-6 mb-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between mb-4">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="{{ asset('assets/img/icons/unicons/paypal.png') }}" alt="paypal"
+                                        class="rounded">
+                                </div>
+                                {{-- <div class="dropdown">
+                                  <button class="btn p-0" type="button" id="cardOpt4" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bx bx-dots-vertical-rounded text-muted"></i>
+                                  </button>
+                                  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt4">
+                                    <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                  </div>
+                                </div> --}}
+                            </div>
+                            <p class="mb-1">InActive Employees</p>
+                            <h4 class="card-title mb-3">4,949</h4>
+                            {{-- <small class="text-danger fw-medium"><i class='bx bx-down-arrow-alt'></i> 14.82%</small> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 mb-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between mb-4">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="{{ asset('assets/img/icons/unicons/cc-primary.png') }}" alt="Credit Card"
+                                        class="rounded">
+                                </div>
+                                {{-- <div class="dropdown">
+                                    <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <i class="bx bx-dots-vertical-rounded text-muted"></i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="cardOpt1">
+                                        <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                    </div>
+                                </div> --}}
+                            </div>
+                            <p class="mb-1">Employees Eligible for Promotion</p>
+                            <h4 class="card-title mb-3">25</h4>
+                            {{-- <small class="text-success fw-medium"><i class='bx bx-up-arrow-alt'></i> 28.14%</small> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 mb-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between mb-4">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="{{ asset('assets/img/icons/unicons/wallet-info.png') }}" alt="Credit Card"
+                                        class="rounded">
+                                </div>
+                                {{-- <div class="dropdown">
+                                    <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <i class="bx bx-dots-vertical-rounded text-muted"></i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="cardOpt1">
+                                        <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                    </div>
+                                </div> --}}
+                            </div>
+                            <p class="mb-1">Employees Eligible for Insurance</p>
+                            <h4 class="card-title mb-3">100</h4>
+                            {{-- <small class="text-success fw-medium"><i class='bx bx-up-arrow-alt'></i> 28.14%</small> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 mb-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between mb-4">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="{{ asset('assets/img/icons/unicons/cc-warning.png') }}" alt="Credit Card"
+                                        class="rounded">
+                                </div>
+                                {{-- <div class="dropdown">
+                                    <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <i class="bx bx-dots-vertical-rounded text-muted"></i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="cardOpt1">
+                                        <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                    </div>
+                                </div> --}}
+                            </div>
+                            <p class="mb-1">Certificates Verified</p>
+                            <h4 class="card-title mb-3">10,000</h4>
+                            {{-- <small class="text-success fw-medium"><i class='bx bx-up-arrow-alt'></i> 28.14%</small> --}}
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="col-12 mb-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-center flex-sm-row flex-column gap-10">
+                                                    <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
+                                                        <div class="card-title mb-6">
+                                                            <h5 class="text-nowrap mb-1">Profile Report</h5>
+                                                            <span class="badge bg-label-warning">YEAR 2025</span>
+                                                        </div>
+                                                        <div class="mt-sm-auto">
+                                                            <span class="text-success text-nowrap fw-medium"><i
+                                                                    class='bx bx-up-arrow-alt'></i> 68.2%</span>
+                                                            {{-- <h4 class="mb-0">$84,686k</h4> --}}
+                                                        </div>
+                                                    </div>
+                                                    <div id="profileReportChart"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>-->
+            </div>
+        </div>
     </div>
-  </div>
-  <!--/ Total Revenue -->
-  <div class="col-12 col-md-8 col-lg-12 col-xxl-4 order-3 order-md-2">
     <div class="row">
-      <div class="col-6 mb-6">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="card-title d-flex align-items-start justify-content-between mb-4">
-              <div class="avatar flex-shrink-0">
-                <img src="{{asset('assets/img/icons/unicons/paypal.png')}}" alt="paypal" class="rounded">
-              </div>
-              {{-- <div class="dropdown">
-                <button class="btn p-0" type="button" id="cardOpt4" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="bx bx-dots-vertical-rounded text-muted"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt4">
-                  <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                  <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                </div>
-              </div> --}}
-            </div>
-            <p class="mb-1">Employees</p>
-            <h4 class="card-title mb-3">2,456</h4>
-            <small class="text-danger fw-medium"><i class='bx bx-down-arrow-alt'></i> 14.82%</small>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 mb-6">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="card-title d-flex align-items-start justify-content-between mb-4">
-              <div class="avatar flex-shrink-0">
-                <img src="{{asset('assets/img/icons/unicons/cc-primary.png')}}" alt="Credit Card" class="rounded">
-              </div>
-              <div class="dropdown">
-                <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="bx bx-dots-vertical-rounded text-muted"></i>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="cardOpt1">
-                  <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                  <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                </div>
-              </div>
-            </div>
-            <p class="mb-1">Projects</p>
-            <h4 class="card-title mb-3">14,857</h4>
-            <small class="text-success fw-medium"><i class='bx bx-up-arrow-alt'></i> 28.14%</small>
-          </div>
-        </div>
-      </div>
-      <!-- <div class="col-12 mb-6">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center flex-sm-row flex-column gap-10">
-              <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
-                <div class="card-title mb-6">
-                  <h5 class="text-nowrap mb-1">Profile Report</h5>
-                  <span class="badge bg-label-warning">YEAR 2025</span>
-                </div>
-                <div class="mt-sm-auto">
-                  <span class="text-success text-nowrap fw-medium"><i class='bx bx-up-arrow-alt'></i> 68.2%</span>
-                  {{-- <h4 class="mb-0">$84,686k</h4> --}}
-                </div>
-              </div>
-              <div id="profileReportChart"></div>
-            </div>
-          </div>
-        </div>
-      </div> -->
-    </div>
-  </div>
-</div>
-<div class="row">
-  <!-- Order Statistics -->
-  {{-- <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-6">
+        <!-- Order Statistics -->
+        {{-- <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-6">
     <div class="card h-100">
       <div class="card-header d-flex justify-content-between">
         <div class="card-title mb-0">
@@ -694,10 +876,10 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
     </div>
   </div> --}}
-  <!--/ Order Statistics -->
+        <!--/ Order Statistics -->
 
-  <!-- Expense Overview -->
-  {{-- <div class="col-md-6 col-lg-4 order-1 mb-6">
+        <!-- Expense Overview -->
+        {{-- <div class="col-md-6 col-lg-4 order-1 mb-6">
     <div class="card h-100">
       <div class="card-header nav-align-top">
         <ul class="nav nav-pills" role="tablist">
@@ -745,10 +927,10 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
     </div>
   </div> --}}
-  <!--/ Expense Overview -->
+        <!--/ Expense Overview -->
 
-  <!-- Transactions -->
-  {{-- <div class="col-md-6 col-lg-4 order-2 mb-6">
+        <!-- Transactions -->
+        {{-- <div class="col-md-6 col-lg-4 order-2 mb-6">
     <div class="card h-100">
       <div class="card-header d-flex align-items-center justify-content-between">
         <h5 class="card-title m-0 me-2">Transactions</h5>
@@ -853,50 +1035,74 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
     </div>
   </div> --}}
-  <!--/ Transactions -->
-</div>
-<div class="row mt-6">
-  <div class="col-lg-4 mb-6">
-    <div class="card">
-      <div class="card-header"><h5>Grade Distribution</h5></div>
-      <div class="card-body"><div id="gradeDistributionChart"></div></div>
+        <!--/ Transactions -->
     </div>
-  </div>
+    <div class="row mt-6">
+        <div class="col-lg-4 mb-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Grade Distribution</h5>
+                </div>
+                <div class="card-body">
+                    <div id="gradeDistributionChart"></div>
+                </div>
+            </div>
+        </div>
 
-  <div class="col-lg-8 mb-6">
-    <div class="card">
-      <div class="card-header"><h5>Department Averages</h5></div>
-      <div class="card-body"><div id="departmentAverageChart"></div></div>
-    </div>
-  </div>
+        <div class="col-lg-8 mb-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Department Averages</h5>
+                </div>
+                <div class="card-body">
+                    <div id="departmentAverageChart"></div>
+                </div>
+            </div>
+        </div>
 
-  <div class="col-lg-6 mb-6">
-    <div class="card">
-      <div class="card-header"><h5>Performance Trend</h5></div>
-      <div class="card-body"><div id="performanceTrendChart"></div></div>
-    </div>
-  </div>
+        <div class="col-lg-6 mb-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Performance Trend</h5>
+                </div>
+                <div class="card-body">
+                    <div id="performanceTrendChart"></div>
+                </div>
+            </div>
+        </div>
 
-  <div class="col-lg-6 mb-6">
-    <div class="card">
-      <div class="card-header"><h5>Promotion Eligibility</h5></div>
-      <div class="card-body"><div id="promotionEligibilityChart"></div></div>
-    </div>
-  </div>
+        <div class="col-lg-6 mb-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Promotion Eligibility</h5>
+                </div>
+                <div class="card-body">
+                    <div id="promotionEligibilityChart"></div>
+                </div>
+            </div>
+        </div>
 
-  <div class="col-lg-6 mb-6">
-    <div class="card">
-      <div class="card-header"><h5>Bonus & Insurance Distribution</h5></div>
-      <div class="card-body"><div id="bonusDistributionChart"></div></div>
-    </div>
-  </div>
+        <div class="col-lg-6 mb-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Bonus & Insurance Distribution</h5>
+                </div>
+                <div class="card-body">
+                    <div id="bonusDistributionChart"></div>
+                </div>
+            </div>
+        </div>
 
-  <div class="col-lg-6 mb-6">
-    <div class="card">
-      <div class="card-header"><h5>Certificate Verification Status</h5></div>
-      <div class="card-body"><div id="certificateStatusChart"></div></div>
+        <div class="col-lg-6 mb-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Certificate Verification Status</h5>
+                </div>
+                <div class="card-body">
+                    <div id="certificateStatusChart"></div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
 @endsection

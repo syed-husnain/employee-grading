@@ -85,7 +85,7 @@ Route::middleware('auth')->group(function () {
   Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
 
   // customer route
-  Route::prefix('organizations')->name('organizations.')->group(function () {
+  Route::prefix('employees')->name('employees.')->group(function () {
     Route::get('/', [CompanyController::class, 'index'])->name('index');
     Route::get('data', [CompanyController::class, 'getData'])->name('data');
     Route::get('/create', [CompanyController::class, 'create'])->name('create');
@@ -208,7 +208,7 @@ Route::get('/master-data', function () {
   return view('content.master-data.index');
 })->name('master-data');
 
-  
+
 Route::get('/score-card', function () {
-    return view('content.score-card.score-card');
+  return view('content.score-card.score-card');
 })->name('score-card');
