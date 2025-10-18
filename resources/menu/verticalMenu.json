@@ -16,6 +16,13 @@
       "icon": "icon-base bx bx-briefcase icon-lg",
       "slug": "master-data",
       "target": ""
+    },
+    {
+      "url": "score-card",
+      "name": "Score Card",
+      "icon": "icon-base bx bx-id-card icon-lg",
+      "slug": "score-card",
+      "target": ""
     }
   ]
 }

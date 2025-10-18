@@ -207,3 +207,8 @@ Route::get('/testpage', [TablesBasic::class, 'testpage']);
 Route::get('/master-data', function () {
   return view('content.master-data.index');
 })->name('master-data');
+
+  
+Route::get('/score-card', function () {
+    return view('content.score-card.score-card');
+})->name('score-card');
